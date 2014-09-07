@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void Update(){
-		m_victoryGraham.active = m_players[0].m_isAlive && !m_players[1].m_isAlive;
-		m_victoryTom.active = !m_players[0].m_isAlive && m_players[1].m_isAlive;
-		m_draw.active = !m_players[0].m_isAlive && !m_players[1].m_isAlive;
+		m_victoryGraham.SetActive(m_players[0].m_isAlive && !m_players[1].m_isAlive);
+		m_victoryTom.SetActive(!m_players[0].m_isAlive && m_players[1].m_isAlive);
+		m_draw.SetActive(!m_players[0].m_isAlive && !m_players[1].m_isAlive);
 	}
 }

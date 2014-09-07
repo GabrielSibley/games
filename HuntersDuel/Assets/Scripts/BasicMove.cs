@@ -86,7 +86,7 @@ public class BasicMove : MonoBehaviour {
 			}
 		}
 		
-		m_reticle.active = IsAiming;
+		m_reticle.SetActive(IsAiming);
 		m_reticle.transform.localPosition = Quaternion.Euler(0, 0, m_aimAngle) * new Vector3(m_reticleDistance, 0, -100);
 		
 		//Update appearance

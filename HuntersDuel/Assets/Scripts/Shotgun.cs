@@ -114,22 +114,22 @@ public class Shotgun : Gun {
 	
 	void Update(){
 		//Update UI
-		m_boltGUI[0].active = m_boltState == BoltState.Closed;
-		m_boltGUI[1].active = m_boltState == BoltState.Up;
-		m_boltGUI[2].active = m_boltState == BoltState.Back;
+		m_boltGUI[0].SetActive(m_boltState == BoltState.Closed);
+		m_boltGUI[1].SetActive(m_boltState == BoltState.Up);
+		m_boltGUI[2].SetActive(m_boltState == BoltState.Back);
 		
 		for(int i = 0; i < 5; i++){
-			m_bulletGUI[i].active = m_magazine[i] != BulletState.Empty;
+			m_bulletGUI[i].SetActive(m_magazine[i] != BulletState.Empty);
 		}
 		if(m_boltState != BoltState.Back && m_magazine[0] != BulletState.Empty){
-			m_bulletGUI[0].active = false;
-			m_bulletGUI[5].active = true;
+			m_bulletGUI[0].SetActive(false);
+			m_bulletGUI[5].SetActive(true);
 			m_bulletGUI[5].renderer.material.color = m_magazine[0] == BulletState.Fired ? m_bulletDeadGUIColor : m_bulletGUIColor;
 		}
 		else{
-			m_bulletGUI[5].active = false;
+			m_bulletGUI[5].SetActive(false);
 			m_bulletGUI[0].renderer.material.color = m_magazine[0] == BulletState.Fired ? m_bulletDeadGUIColor : m_bulletGUIColor;
 		}
-		m_bulletGUI[6].active = m_partialReload;
+		m_bulletGUI[6].SetActive(m_partialReload);
 	}
 }
