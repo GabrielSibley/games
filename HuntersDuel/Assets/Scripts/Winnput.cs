@@ -35,19 +35,19 @@ public static class Winnput {
 
 	private const KeyCode Home_Button	= KeyCode.Alpha1;
 
-	private const KeyCode Player1_A		= KeyCode.X;
-	private const KeyCode Player1_B		= KeyCode.Z;
-	private const KeyCode Player1_Up	= KeyCode.W;
-	private const KeyCode Player1_Down	= KeyCode.S;
-	private const KeyCode Player1_Left	= KeyCode.A;
-	private const KeyCode Player1_Right	= KeyCode.D;
+	private const KeyCode Player1_A		= KeyCode.X; //Blue, on the left
+	private const KeyCode Player1_B		= KeyCode.Z; //Green, on the right
+	private const KeyCode Player1_Up	= KeyCode.UpArrow;
+	private const KeyCode Player1_Down	= KeyCode.DownArrow;
+	private const KeyCode Player1_Left	= KeyCode.LeftArrow;
+	private const KeyCode Player1_Right	= KeyCode.RightArrow;
 
-	private const KeyCode Player2_A 	= KeyCode.RightShift;
-	private const KeyCode Player2_B		= KeyCode.RightControl;
-	private const KeyCode Player2_Up	= KeyCode.UpArrow;
-	private const KeyCode Player2_Down	= KeyCode.DownArrow;
-	private const KeyCode Player2_Left	= KeyCode.LeftArrow;
-	private const KeyCode Player2_Right	= KeyCode.RightArrow;
+	private const KeyCode Player2_A 	= KeyCode.M;
+	private const KeyCode Player2_B		= KeyCode.N;
+	private const KeyCode Player2_Up	= KeyCode.I;
+	private const KeyCode Player2_Down	= KeyCode.K;
+	private const KeyCode Player2_Left	= KeyCode.J;
+	private const KeyCode Player2_Right	= KeyCode.L;
 
 		
 	public static bool HomeDown {
@@ -119,6 +119,30 @@ public static class Winnput {
 	public static bool[] Right {
 		get {
 			return new bool[] { Input.GetKey(Player1_Right), Input.GetKey(Player2_Right) };
+		}		
+	}
+
+	public static bool[] UpDown {
+		get {
+			return new bool[] { Input.GetKeyDown(Player1_Up), Input.GetKeyDown(Player2_Up) };
+		}		
+	}
+	
+	public static bool[] DownDown {
+		get {
+			return new bool[] { Input.GetKeyDown(Player1_Down), Input.GetKeyDown(Player2_Down) };
+		}		
+	}
+	
+	public static bool[] LeftDown {
+		get {
+			return new bool[] { Input.GetKeyDown(Player1_Left), Input.GetKeyDown(Player2_Left) };
+		}		
+	}
+	
+	public static bool[] RightDown {
+		get {
+			return new bool[] { Input.GetKeyDown(Player1_Right), Input.GetKeyDown(Player2_Right) };
 		}		
 	}
 
