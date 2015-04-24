@@ -27,6 +27,8 @@ public class FloorLayout : MonoBehaviour {
 		return instance.tiles;
 	}
 
+	public static Vector2 TileSize{ get { return instance.tileSize; }} 
+
 	public static int Width { get { return instance.width; }}
 	public static int Height { get { return instance.height; }}
 

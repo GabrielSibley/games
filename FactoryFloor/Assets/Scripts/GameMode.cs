@@ -7,10 +7,8 @@ public class GameMode {
 
 	public enum Mode {
 		None,
-		AddBelt,
-		RemoveBelt,
-		AddCrate,
-		RemoveCrate
+		MoveMachine,
+		LinkMachine
 	};
 
 	public static Mode Current{

@@ -5,13 +5,20 @@ public class PrefabManager : MonoBehaviour {
 
 	private static PrefabManager instance;
 
-	public static Conveyor Conveyor{
+	public static Crate Crate{
 		get{
-			return instance.conveyorPrefab;
+			return instance.cratePrefab;
 		}
 	}
 
-	[SerializeField] private Conveyor conveyorPrefab;
+	public static MachinePartDisplay MachinePartDisplay{
+		get{
+			return instance.machinePartDisplayPrefab;
+		}
+	}
+
+	[SerializeField] private Crate cratePrefab;
+	[SerializeField] private MachinePartDisplay machinePartDisplayPrefab;
 
 	void Awake(){
 		instance = this;

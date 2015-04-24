@@ -8,47 +8,15 @@ public class Tile : MonoBehaviour, IInputReceiver{
 
 	public List<TileFeature> features = new List<TileFeature>();
 
-	public void OnInputDown(){
-		if(GameMode.Current == GameMode.Mode.RemoveBelt) {
-			var featuresToRemove = features.ToArray ();
-			foreach(TileFeature f in featuresToRemove){
-				f.Remove();
-			}
-			UpdateConveyorGraph();
-		}
-		if(GameMode.Current == GameMode.Mode.AddBelt){
-			if(features.Count == 0){
-				var conveyor = Instantiate(PrefabManager.Conveyor, Vector3.zero, Quaternion.identity) as Conveyor;
-				conveyor.AddToTile(this);
-				//conveyor.transform.position = transform.position - Vector3.forward;
-				//conveyor.tile = this;
-			}
-			else{
-				features[0].OnInputDown();
-			}
-			UpdateConveyorGraph();
-		}
-		if(GameMode.Current == GameMode.Mode.AddCrate && features.Count > 0){
-			features[0].OnInputDown();
-			//CrateManager.CreateCrate(conveyor);
-		}
-		if(GameMode.Current == GameMode.Mode.RemoveCrate && features.Count > 0){
-			features[0].OnInputDown();;
-		}
+	public Tile GetTileAtOffset(int xOffset, int yOffset)
+	{
+		return FloorLayout.GetTile(x + xOffset, y + yOffset);
 	}
 
-	private void UpdateConveyorGraph(){
-		/*
-		foreach(Tile t in FloorLayout.GetTiles()){
-			if(t.conveyor){
-				t.conveyor.ClearEdges();
-			}
+	public void OnInputDown()
+	{
+		if(Machine.MachineOnCursor != null){
+			Machine.MachineOnCursor.Drop(this);
 		}
-		foreach(Tile t in FloorLayout.GetTiles()){
-			if(t.conveyor){
-				t.conveyor.UpdateEdges();
-			}
-		}
-		*/
 	}
 }

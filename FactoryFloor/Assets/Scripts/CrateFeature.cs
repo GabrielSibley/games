@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CrateSpawn : MonoBehaviour {
+public class CrateFeature : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

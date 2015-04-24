@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SimNode : MonoBehaviour {
+public class Pipe : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

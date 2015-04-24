@@ -18,4 +18,10 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public static Vector3 InputWorldPos{
+		get{
+			return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		}
+	}
 }
