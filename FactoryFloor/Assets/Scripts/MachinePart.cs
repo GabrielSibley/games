@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MachinePart {
-	public int XOffset, YOffset;
+	public Vector2i Offset;
 	public Machine Machine;
 
 	private MachinePartDisplay display;
@@ -27,7 +27,16 @@ public class MachinePart {
 	{
 		InitDisplay();
 		display.transform.position = position + 
-			Vector2.Scale (new Vector2(XOffset, YOffset), FloorLayout.TileSize);
+			Vector2.Scale (new Vector2(Offset.x, Offset.y), FloorLayout.TileSize);
+	}
+
+	public void AddInPort()
+	{
+
+	}
+
+	public void AddOutPort()
+	{
 	}
 
 	private void InitDisplay()

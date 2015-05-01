@@ -41,12 +41,12 @@ public class MachinePartDisplay : TileFeature {
 	public void InitSprite()
 	{
 		bool[] joins = new bool[8];
-		Offset[] offsets = {Offset.Up, Offset.Up+Offset.Left, Offset.Left,
-							Offset.Left+Offset.Down, Offset.Down, Offset.Down+Offset.Right,
-			Offset.Right, Offset.Right + Offset.Up};
+		Vector2i[] offsets = {Vector2i.Up, Vector2i.Up+Vector2i.Left, Vector2i.Left,
+			Vector2i.Left+Vector2i.Down, Vector2i.Down, Vector2i.Down+Vector2i.Right,
+			Vector2i.Right, Vector2i.Right + Vector2i.Up};
 		for(int i = 0; i < joins.Length; i++)
 		{
-			joins[i] = Machine.HasPartAt (new Offset(Part.XOffset, Part.YOffset) + offsets[i]);
+			joins[i] = Machine.HasPartAt (Part.Offset + offsets[i]);
 		}
 		SetSubsprite(RendererUL, joins[0], joins[2], true, true, 3, joins[1]);
 		SetSubsprite(RendererUR, joins[0], true, true, joins[6], 2, joins[7]);

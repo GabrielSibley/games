@@ -16,6 +16,11 @@ public class FloorLayout : MonoBehaviour {
 
 	private static FloorLayout instance;
 
+	public static Tile GetTile(Vector2i pos)
+	{
+		return GetTile(pos.x, pos.y);
+	}
+
 	public static Tile GetTile(int x, int y){
 		if(x < 0 || x >= instance.width || y < 0 || y >= instance.height){
 			return null;
@@ -43,8 +48,8 @@ public class FloorLayout : MonoBehaviour {
 				obj.transform.localPosition = new Vector3((x + 0.5f) * tileSize.x, (y + 0.5f) * tileSize.y, 0);
 				var tile = obj.GetComponent<Tile>();
 				tiles[y*width + x] = tile;
-				tile.x = x;
-				tile.y = y;
+				tile.Position.x = x;
+				tile.Position.y = y;
 			}
 		}
 	}

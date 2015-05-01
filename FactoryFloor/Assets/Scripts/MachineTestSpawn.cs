@@ -10,12 +10,12 @@ public class MachineTestSpawn : MonoBehaviour {
 		Machine machine = new Machine();
 		//1-6 parts
 		int size = Random.Range (1, 4) + Random.Range (0, 4);
-		List<Offset> openLocations = new List<Offset>();
-		openLocations.Add(new Offset(){x = 0, y = 0});
+		List<Vector2i> openLocations = new List<Vector2i>();
+		openLocations.Add(new Vector2i(){x = 0, y = 0});
 		for(int i = 0; i < size; i++)
 		{
 			int locIndex = Random.Range (0, openLocations.Count);
-			Offset loc = openLocations[locIndex];
+			Vector2i loc = openLocations[locIndex];
 			openLocations.RemoveAt(locIndex);
 			if(machine.HasPartAt(loc))
 			{
@@ -23,10 +23,9 @@ public class MachineTestSpawn : MonoBehaviour {
 			}
 			else{
 				MachinePart part = new MachinePart();
-				part.XOffset = loc.x;
-				part.YOffset = loc.y;
+				part.Offset = loc;
 				machine.AddPart(part);
-				var dirs = new Offset[]{Offset.Up, Offset.Down, Offset.Left, Offset.Right};
+				var dirs = new Vector2i[]{Vector2i.Up, Vector2i.Down, Vector2i.Left, Vector2i.Right};
 				for(int j = 0; j < dirs.Length; j++){
 					if(!machine.HasPartAt(loc + dirs[j]))
 					{
@@ -35,50 +34,11 @@ public class MachineTestSpawn : MonoBehaviour {
 				}
 			}
 		}
+		//1 input, 1 output
+		var inPart = machine.Parts[Random.Range (0, machine.Parts.Count)];
+		var outPart = machine.Parts[Random.Range (0, machine.Parts.Count)];
+		inPart.AddInPort();
+		outPart.AddOutPort();
 		return machine;
-	}
-}
-
-public struct Offset{
-	public static Offset Up {
-		get{ return new Offset(0, 1); }
-	}
-	
-	public static Offset Down {
-		get{ return new Offset(0, -1); }
-	}
-	
-	public static Offset Left {
-		get{ return new Offset(-1, 0); }
-	}
-	
-	public static Offset Right {
-		get{ return new Offset(1, 0); }
-	}
-	
-	public static Offset operator + (Offset a, Offset b){
-		return new Offset(a.x + b.x, a.y + b.y);
-	}
-	
-	public int x;
-	public int y;
-	
-	public Offset(int x, int y){
-		this.x = x;
-		this.y = y;
-	}
-	
-	public override bool Equals(object other)
-	{
-		if(other is Offset)
-		{
-			var otherOffset = (Offset)other;
-			return otherOffset.x == x && otherOffset.y == y;
-		}
-		return false;
-	}
-	
-	public override int GetHashCode(){
-		return x * 101 + y;
 	}
 }

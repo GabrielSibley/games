@@ -10,9 +10,9 @@ public class Machine {
 	private Tile rootTile;
 	private Tile oldRootTile;
 
-	public bool HasPartAt(Offset offset)
+	public bool HasPartAt(Vector2i offset)
 	{
-		return Parts.Exists (part => part.XOffset == offset.x && part.YOffset == offset.y);
+		return Parts.Exists (part => part.Offset == offset);
 	}
 
 	public void PickUp(){
@@ -58,7 +58,7 @@ public class Machine {
 		}
 		foreach(MachinePart part in Parts)
 		{
-			Tile partTile = tile.GetTileAtOffset(part.XOffset, part.YOffset);
+			Tile partTile = tile.GetTileAtOffset(part.Offset);
 			//machine part would lie off board
 			if(partTile == null)
 			{
@@ -100,7 +100,7 @@ public class Machine {
 			rootTile = tile;
 			foreach(MachinePart part in Parts)
 			{
-				part.MoveToTile(tile.GetTileAtOffset(part.XOffset, part.YOffset));
+				part.MoveToTile(tile.GetTileAtOffset(part.Offset));
 			}
 		}
 	}

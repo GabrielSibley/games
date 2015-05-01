@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class Tile : MonoBehaviour, IInputReceiver{
 
-	public int x, y;
+	public Vector2i Position;
 
 	public List<TileFeature> features = new List<TileFeature>();
 
-	public Tile GetTileAtOffset(int xOffset, int yOffset)
+	public Tile GetTileAtOffset(Vector2i offset)
 	{
-		return FloorLayout.GetTile(x + xOffset, y + yOffset);
+		return FloorLayout.GetTile(Position + offset);
 	}
 
 	public void OnInputDown()
