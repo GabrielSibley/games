@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MachinePart {
 	public Vector2i Offset;
 	public Machine Machine;
+	public List<Port> Ports = new List<Port>();
 
 	private MachinePartDisplay display;
 
@@ -21,6 +23,10 @@ public class MachinePart {
 	{
 		InitDisplay();
 		display.MoveToTile(tile);
+		for(int i = 0; i < Ports.Count; i++)
+		{
+			Ports[i].UpdateDisplay();
+		}
 	}
 
 	public void DisplayAtWithOffset(Vector2 position)
@@ -28,15 +34,26 @@ public class MachinePart {
 		InitDisplay();
 		display.transform.position = position + 
 			Vector2.Scale (new Vector2(Offset.x, Offset.y), FloorLayout.TileSize);
+		for(int i = 0; i < Ports.Count; i++)
+		{
+			Ports[i].UpdateDisplay();
+		}
 	}
 
-	public void AddInPort()
+	public Port AddInPort()
 	{
-
+		Port newPort = new Port(PortType.In);
+		newPort.Part = this;
+		Ports.Add (newPort);
+		return newPort;
 	}
 
-	public void AddOutPort()
+	public Port AddOutPort()
 	{
+		Port newPort = new Port(PortType.Out);
+		newPort.Part = this;
+		Ports.Add (newPort);
+		return newPort;
 	}
 
 	private void InitDisplay()
@@ -45,7 +62,8 @@ public class MachinePart {
 		{
 			display = GameObject.Instantiate(PrefabManager.MachinePartDisplay) as MachinePartDisplay;
 			display.Part = this;
-			display.InitSprite();
+			display.UpdateTile();
+			display.UpdatePorts();
 		}
 	}
 }

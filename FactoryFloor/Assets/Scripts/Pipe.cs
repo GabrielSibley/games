@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pipe : MonoBehaviour {
+public class Pipe {
 
-	// Use this for initialization
-	void Start () {
-	
+	public Port From;
+	public Port To;
+
+	private PipeDisplay display;
+
+	public void SetPorts(Port from, Port to)
+	{
+		From = from;
+		To = to;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void UpdateDisplay()
+	{
+		if(display == null)
+		{
+			display = Object.Instantiate(PrefabManager.PipeDisplay) as PipeDisplay;
+		}
+		display.DisplayPointToPoint(From.WorldPosition, To.WorldPosition);
 	}
 }

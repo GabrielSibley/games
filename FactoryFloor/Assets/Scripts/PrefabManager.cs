@@ -17,8 +17,16 @@ public class PrefabManager : MonoBehaviour {
 		}
 	}
 
+	public static PipeDisplay PipeDisplay
+	{
+		get{
+			return instance.pipeDisplay;
+		}
+	}
+
 	[SerializeField] private Crate cratePrefab;
 	[SerializeField] private MachinePartDisplay machinePartDisplayPrefab;
+	[SerializeField] private PipeDisplay pipeDisplay;
 
 	void Awake(){
 		instance = this;

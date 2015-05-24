@@ -10,7 +10,9 @@ public class MachinePartDisplay : TileFeature {
 	public SpriteRenderer RendererUR;
 	public SpriteRenderer RendererLL;
 	public SpriteRenderer RendererLR;
-	public Sprite[] Sprites;
+	public Sprite[] TileSprites;
+	
+	public PortDisplay[] PortDisplays;
 
 	public override void MoveToTile(Tile tile){
 		if(CurrentTile != null){
@@ -38,7 +40,7 @@ public class MachinePartDisplay : TileFeature {
 		Machine.PickUp();
 	}
 
-	public void InitSprite()
+	public void UpdateTile()
 	{
 		bool[] joins = new bool[8];
 		Vector2i[] offsets = {Vector2i.Up, Vector2i.Up+Vector2i.Left, Vector2i.Left,
@@ -52,6 +54,23 @@ public class MachinePartDisplay : TileFeature {
 		SetSubsprite(RendererUR, joins[0], true, true, joins[6], 2, joins[7]);
 		SetSubsprite(RendererLL, true, joins[2], joins[4], true, 1, joins[3]);
 		SetSubsprite(RendererLR, true, true, joins[4], joins[6], 0, joins[5]);
+	}
+
+	public void UpdatePorts()
+	{
+		for(int i = 0; i < PortDisplays.Length; i++)
+		{
+			if(i < Part.Ports.Count)
+			{
+				Part.Ports[i].SetDisplay(PortDisplays[i]);
+				Part.Ports[i].UpdateDisplay();
+			}
+			else
+			{
+				PortDisplays[i].Port = null;
+				PortDisplays[i].UpdateDisplay();
+			}
+		}
 	}
 
 	private void SetSubsprite(SpriteRenderer subsprite, 
@@ -96,6 +115,6 @@ public class MachinePartDisplay : TileFeature {
 				col = 2;
 			}
 		}
-		subsprite.sprite = Sprites[row * 5 + col];
+		subsprite.sprite = TileSprites[row * 5 + col];
 	}
 }
