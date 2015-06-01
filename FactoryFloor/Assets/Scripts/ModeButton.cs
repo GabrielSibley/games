@@ -10,11 +10,14 @@ public class ModeButton : MonoBehaviour, IInputReceiver {
 	}
 
 	public void OnInputDown(){
-		if(GameMode.Current == mode){
-			GameMode.Current = GameMode.Mode.None;
-		}
-		else{
-			GameMode.Current = mode;
+		if(!GameMode.ModeLocked)
+		{
+			if(GameMode.Current == mode){
+				GameMode.Current = GameMode.Mode.None;
+			}
+			else{
+				GameMode.Current = mode;
+			}
 		}
 	}
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Machine {
 	public static Machine MachineOnCursor;
+	public static List<Machine> PlacedMachines = new List<Machine>();
 
 	public List<MachinePart> Parts = new List<MachinePart>();
 
@@ -21,6 +22,8 @@ public class Machine {
 			Debug.LogError ("Already carrying a machine on cursor!");
 			return;
 		}
+		PlacedMachines.Remove (this);
+		GameMode.Current = GameMode.Mode.MoveMachine;
 		MachineOnCursor = this;
 		oldRootTile = rootTile;
 		RootToTile(null);
@@ -36,6 +39,7 @@ public class Machine {
 		{
 			Debug.LogError ("Was not carrying this machine on cursor");
 		}
+		GameMode.Current = GameMode.Mode.SelectMachine;
 		MachineOnCursor = null;
 		foreach(MachinePart part in Parts)
 		{
@@ -97,6 +101,7 @@ public class Machine {
 			return;
 		}
 		else{
+			PlacedMachines.Add (this);
 			rootTile = tile;
 			foreach(MachinePart part in Parts)
 			{

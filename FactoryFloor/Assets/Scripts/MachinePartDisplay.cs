@@ -37,7 +37,10 @@ public class MachinePartDisplay : TileFeature {
 
 	public override void OnInputDown()
 	{
-		Machine.PickUp();
+		if(GameMode.Current == GameMode.Mode.SelectMachine)
+		{
+			Machine.PickUp();
+		}
 	}
 
 	public void UpdateTile()

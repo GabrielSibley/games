@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MachinePart {
 	public Vector2i Offset;
 	public Machine Machine;
-	public List<Port> Ports = new List<Port>();
+	public List<MachinePort> Ports = new List<MachinePort>();
 
 	private MachinePartDisplay display;
 
@@ -40,17 +40,17 @@ public class MachinePart {
 		}
 	}
 
-	public Port AddInPort()
+	public MachinePort AddInPort()
 	{
-		Port newPort = new Port(PortType.In);
+		MachinePort newPort = new MachinePort(PortType.In);
 		newPort.Part = this;
 		Ports.Add (newPort);
 		return newPort;
 	}
 
-	public Port AddOutPort()
+	public MachinePort AddOutPort()
 	{
-		Port newPort = new Port(PortType.Out);
+		MachinePort newPort = new MachinePort(PortType.Out);
 		newPort.Part = this;
 		Ports.Add (newPort);
 		return newPort;

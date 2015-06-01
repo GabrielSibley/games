@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MachineTestSpawn : MonoBehaviour {
-
-	public Tile targetTile;
+public class MachineTestSpawn {
 
 	public static Machine GetRandomMachine(){
 		Machine machine = new Machine();
