@@ -41,9 +41,6 @@ public class PipeEditManager : MonoBehaviour, IInputListener {
 					{
 						//Edit existing pipe
 						editedPipe = closestPort.Pipe;
-						//Detach edited port from pipe temporarily
-						editedPipe.From.Pipe = null;
-						editedPipe.To.Pipe = null;
 						if(closestPort == editedPipe.From)
 						{
 							editedPipe.From = new MouseFollowingPort(PortType.Out);
@@ -90,8 +87,10 @@ public class PipeEditManager : MonoBehaviour, IInputListener {
 					{
 						editedPipe.From = closestPort;
 					}
-					editedPipe.To.Pipe = editedPipe;
-					editedPipe.From.Pipe = editedPipe;
+					if(editedPipe.GrabberCount == 0)
+					{
+						editedPipe.AddGrabber();
+					}
 					editedPipe.UpdateDisplay();
 					editedPipe = null;
 				}

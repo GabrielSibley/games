@@ -5,6 +5,7 @@ public class MachinePort : Port {
 
 	public MachinePart Part;
 	public Machine Machine { get { return Part.Machine; } }
+	public override bool IsReal{get{return true;}}
 
 	private PortDisplay display;
 

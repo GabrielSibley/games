@@ -24,9 +24,18 @@ public class PrefabManager : MonoBehaviour {
 		}
 	}
 
+	public static GrabberDisplay GrabberDisplay
+	{
+		get
+		{
+			return instance.grabberDisplay;
+		}
+	}
+
 	[SerializeField] private Crate cratePrefab;
 	[SerializeField] private MachinePartDisplay machinePartDisplayPrefab;
 	[SerializeField] private PipeDisplay pipeDisplay;
+	[SerializeField] private GrabberDisplay grabberDisplay;
 
 	void Awake(){
 		instance = this;

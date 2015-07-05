@@ -6,7 +6,8 @@ public enum PortType {In, Out};
 public abstract class Port {
 
 	public PortType Type;
-	public Pipe Pipe;
+	public Pipe Pipe; //modify this with Pipe.From and Pipe.To
+	public abstract bool IsReal { get; }
 
 	public abstract Vector2 WorldPosition{
 		get;
