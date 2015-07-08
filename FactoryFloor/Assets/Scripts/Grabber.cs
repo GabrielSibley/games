@@ -8,8 +8,9 @@ public class Grabber: IUpdatable {
 	public float MinSpeed = 30;
 	public float Acceleration = 1200;
 	public float NormalizedDistance;
+	public Crate HeldCrate;
 
-	private bool reverse;
+	private bool reverse = true;
 
 	private GrabberDisplay display;
 
@@ -32,15 +33,28 @@ public class Grabber: IUpdatable {
 			NormalizedDistance = NormalizedDistance + speed * deltaTime / Pipe.Length;
 			if(NormalizedDistance >= 1)
 			{
-				reverse = true;
-				//make delivery here
-				NormalizedDistance = 2 - NormalizedDistance;
+				if(Pipe.To.TryPutCrate(HeldCrate))
+				{
+					reverse = true;
+					HeldCrate = null;
+					NormalizedDistance = 2 - NormalizedDistance;
+				}
+				else
+				{
+					NormalizedDistance = 1;
+				}
 			}
 			if(NormalizedDistance <= 0)
 			{
-				reverse = false;
-				//make pickup here
-				NormalizedDistance = -NormalizedDistance;
+				if(Pipe.From.TryGetCrate(out HeldCrate))
+				{
+					reverse = false;
+					NormalizedDistance = -NormalizedDistance;
+				}
+				else
+				{
+					NormalizedDistance = 0;
+				}
 			}
 		}
 		UpdateDisplay();

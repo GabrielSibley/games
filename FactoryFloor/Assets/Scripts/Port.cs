@@ -17,4 +17,7 @@ public abstract class Port {
 	{
 		Type = t;
 	}
+
+	public abstract bool TryGetCrate(out Crate crate);
+	public abstract bool TryPutCrate(Crate crate);
 }

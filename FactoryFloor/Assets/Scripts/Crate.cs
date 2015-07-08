@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Crate : MonoBehaviour {
+public class Crate {
 
-	private static int nextCrateId;
-	public static List<Crate> allCrates = new List<Crate>();
+	public const int MaxFeatures = 4;
 
-	private void Awake(){
-		allCrates.Add(this);
-		name = "Crate " + nextCrateId++;
+	public List<CrateFeature> Features = new List<CrateFeature>(MaxFeatures);
+
+	public Crate()
+	{
 	}
 
-	private void OnDestroy(){
-		allCrates.Remove(this);
+	public Crate(Crate cloneOf)
+	{
+		Features.AddRange (cloneOf.Features);
 	}
 }

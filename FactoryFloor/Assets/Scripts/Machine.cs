@@ -7,6 +7,7 @@ public class Machine {
 	public static List<Machine> PlacedMachines = new List<Machine>();
 
 	public List<MachinePart> Parts = new List<MachinePart>();
+	public IMachineRule Rule;
 
 	private Tile rootTile;
 	private Tile oldRootTile;
@@ -107,6 +108,7 @@ public class Machine {
 			{
 				part.MoveToTile(tile.GetTileAtOffset(part.Offset));
 			}
+			DisplayAt(tile.transform.position);
 		}
 	}
 
@@ -116,11 +118,33 @@ public class Machine {
 		{
 			part.DisplayAtWithOffset(position);
 		}
+		Rule.UpdateDisplay(this, position);
 	}
 
 	public void AddPart(MachinePart part)
 	{
 		Parts.Add(part);
 		part.Machine = this;
+	}
+
+	public bool TryPutCrate(Crate crate)
+	{
+		if(Rule != null)
+		{
+			return Rule.TryPutCrate(crate);
+		}
+		Debug.LogError ("Machine has no rule");
+		return false;
+	}
+
+	public bool TryGetCrate(out Crate crate)
+	{
+		if(Rule != null)
+		{
+			return Rule.TryGetCrate(out crate);
+		}
+		Debug.LogError ("Machine has no rule");
+		crate = null;
+		return false;
 	}
 }

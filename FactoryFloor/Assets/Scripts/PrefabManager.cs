@@ -5,15 +5,17 @@ public class PrefabManager : MonoBehaviour {
 
 	private static PrefabManager instance;
 
-	public static Crate Crate{
-		get{
-			return instance.cratePrefab;
-		}
-	}
-
 	public static MachinePartDisplay MachinePartDisplay{
 		get{
 			return instance.machinePartDisplayPrefab;
+		}
+	}
+
+	public static MatchReplaceRuleDisplay MatchReplaceRuleDisplay
+	{
+		get
+		{
+			return instance.matchReplaceRuleDisplay;
 		}
 	}
 
@@ -32,10 +34,19 @@ public class PrefabManager : MonoBehaviour {
 		}
 	}
 
-	[SerializeField] private Crate cratePrefab;
+	public static FourFeatureDisplay FourFeatureDisplay
+	{
+		get
+		{
+			return instance.fourFeatureDisplay;
+		}
+	}
+	
 	[SerializeField] private MachinePartDisplay machinePartDisplayPrefab;
 	[SerializeField] private PipeDisplay pipeDisplay;
 	[SerializeField] private GrabberDisplay grabberDisplay;
+	[SerializeField] private MatchReplaceRuleDisplay matchReplaceRuleDisplay;
+	[SerializeField] private FourFeatureDisplay fourFeatureDisplay;
 
 	void Awake(){
 		instance = this;
