@@ -40,6 +40,13 @@ public class FloorLayout : MonoBehaviour {
 #if UNITY_EDITOR
 	[ContextMenu("Layout Floor")]
 	public void Layout() {
+		for(int i = 0; i < tiles.Length; i++)
+		{
+			if(tiles[i])
+			{
+				DestroyImmediate(tiles[i].gameObject);
+			}
+		}
 		tiles = new Tile[width * height];
 		for(int x = 0; x < width; x++){
 			for(int y = 0; y < height; y++){
