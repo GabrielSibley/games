@@ -17,11 +17,11 @@ public class ProduceRule : IMachineRule {
 		Production = produces;
 	}
 
-	public bool TryPutCrate(Crate crate)
+	public bool TryPutCrate(Port port, Crate crate)
 	{
 		return false;
 	}
-	public bool TryGetCrate(out Crate crate)
+	public bool TryGetCrate(Port port, out Crate crate)
 	{
 		crate = new Crate(Production);
 		return true;

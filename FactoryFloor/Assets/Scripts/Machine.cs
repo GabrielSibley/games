@@ -127,21 +127,21 @@ public class Machine {
 		part.Machine = this;
 	}
 
-	public bool TryPutCrate(Crate crate)
+	public bool TryPutCrate(Port port, Crate crate)
 	{
 		if(Rule != null)
 		{
-			return Rule.TryPutCrate(crate);
+			return Rule.TryPutCrate(port, crate);
 		}
 		Debug.LogError ("Machine has no rule");
 		return false;
 	}
 
-	public bool TryGetCrate(out Crate crate)
+	public bool TryGetCrate(Port port, out Crate crate)
 	{
 		if(Rule != null)
 		{
-			return Rule.TryGetCrate(out crate);
+			return Rule.TryGetCrate(port, out crate);
 		}
 		Debug.LogError ("Machine has no rule");
 		crate = null;

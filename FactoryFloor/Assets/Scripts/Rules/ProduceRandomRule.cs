@@ -8,11 +8,11 @@ public class ProduceRandomRule : IMachineRule {
 	public int NumInPorts{ get { return 0; } }
 	public int NumOutPorts{ get { return 1; } }
 
-	public bool TryPutCrate(Crate crate)
+	public bool TryPutCrate(Port port, Crate crate)
 	{
 		return false;
 	}
-	public bool TryGetCrate(out Crate crate)
+	public bool TryGetCrate(Port port, out Crate crate)
 	{
 		crate = new Crate();
 		int numFeatures = Random.Range (1, Crate.MaxFeatures+1);

@@ -15,7 +15,7 @@ public class DestroyExactlyRule : IMachineRule {
 		this.filter = filter;
 	}
 
-	public bool TryPutCrate(Crate crate)
+	public bool TryPutCrate(Port port, Crate crate)
 	{
 		if(crate.Features.Count == filter.Features.Count)
 		{
@@ -31,7 +31,7 @@ public class DestroyExactlyRule : IMachineRule {
 		return  false;
 
 	}
-	public bool TryGetCrate(out Crate crate)
+	public bool TryGetCrate(Port port, out Crate crate)
 	{
 		crate = null;
 		return false;

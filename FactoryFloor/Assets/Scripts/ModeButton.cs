@@ -9,6 +9,11 @@ public class ModeButton : MonoBehaviour, IInputReceiver {
 		GameMode.ModeChanged += OnModeChanged;
 	}
 
+	private void OnDestroy()
+	{
+		GameMode.ModeChanged -= OnModeChanged;
+	}
+
 	public void OnInputDown(){
 		if(!GameMode.ModeLocked)
 		{

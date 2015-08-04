@@ -68,20 +68,16 @@ public class MachineTestSpawn {
 				}
 			}
 		}
-		//TODO: Add support for > 1 port of each type
-		if(machine.Rule.NumInPorts == 1)
+		//TODO: Will break if >4xMachineSize ports?
+		for(int i = 0; i < machine.Rule.NumInPorts; i++)
 		{
 			var inPart = machine.Parts[Random.Range (0, machine.Parts.Count)];
 			inPart.AddInPort();
 		}
-		if(machine.Rule.NumOutPorts == 1)
+		for(int i = 0; i < machine.Rule.NumOutPorts; i++)
 		{
 			var outPart = machine.Parts[Random.Range (0, machine.Parts.Count)];
 			outPart.AddOutPort();
-		}
-		if(machine.Rule.NumInPorts > 1 || machine.Rule.NumOutPorts > 1)
-		{
-			Debug.LogError ("No support for machines with more than 1 port of each type yet");
 		}
 		return machine;
 	}

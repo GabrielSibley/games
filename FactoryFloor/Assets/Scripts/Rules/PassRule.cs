@@ -10,7 +10,7 @@ public class PassRule : IMachineRule {
 
 	private Crate heldCrate;
 
-	public bool TryPutCrate(Crate crate)
+	public bool TryPutCrate(Port port, Crate crate)
 	{
 		if(heldCrate == null)
 		{
@@ -22,7 +22,7 @@ public class PassRule : IMachineRule {
 			return false;
 		}
 	}
-	public bool TryGetCrate(out Crate crate)
+	public bool TryGetCrate(Port port, out Crate crate)
 	{
 		if(heldCrate == null)
 		{

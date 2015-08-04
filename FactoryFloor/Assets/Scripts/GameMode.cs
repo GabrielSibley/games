@@ -29,7 +29,10 @@ public class GameMode {
 		}
 		set{
 			currentMode = value;
-			ModeChanged(currentMode);
+			if(ModeChanged != null)
+			{
+				ModeChanged(currentMode);
+			}
 		}
 	}
 	private static Mode currentMode;

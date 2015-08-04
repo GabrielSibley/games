@@ -40,10 +40,10 @@ public class MachinePort : Port {
 
 	public override bool TryPutCrate(Crate crate)
 	{
-		return Machine.TryPutCrate(crate);
+		return Machine.TryPutCrate(this, crate);
 	}
 	public override bool TryGetCrate(out Crate crate)
 	{
-		return Machine.TryGetCrate(out crate);
+		return Machine.TryGetCrate(this, out crate);
 	}
 }

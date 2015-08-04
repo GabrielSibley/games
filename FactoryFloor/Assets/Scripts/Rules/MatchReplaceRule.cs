@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //Replaces all features that match a target to another feature
 public class MatchReplaceRule : IMachineRule {
@@ -11,8 +12,8 @@ public class MatchReplaceRule : IMachineRule {
 		//Replace color/shape cannot both be wild
 		//Replace color/shape cannot both be the same as Match color/shape
 		MatchReplaceRule rule = new MatchReplaceRule();
-		bool wildMatchShape = Random.value < 0.4f;
-		bool wildMatchColor = Random.value < 0.4f;
+		bool wildMatchShape = Random.value < 0.7f;
+		bool wildMatchColor = Random.value < 0.7f;
 		if(wildMatchShape && wildMatchColor)
 		{
 			if(Random.value < 0.5f)
@@ -71,7 +72,7 @@ public class MatchReplaceRule : IMachineRule {
 		ReplaceFeature = replace;
 	}
 
-	public bool TryPutCrate(Crate crate)
+	public bool TryPutCrate(Port port, Crate crate)
 	{
 		if(heldCrate == null)
 		{
@@ -84,7 +85,7 @@ public class MatchReplaceRule : IMachineRule {
 			return false;
 		}
 	}
-	public bool TryGetCrate(out Crate crate)
+	public bool TryGetCrate(Port port, out Crate crate)
 	{
 		if(heldCrate == null)
 		{
@@ -110,6 +111,11 @@ public class MatchReplaceRule : IMachineRule {
 	public IMachineRule FreshCopy()
 	{
 		return new MatchReplaceRule(MatchFeature, ReplaceFeature);
+	}
+
+	public bool SameEffect(MatchReplaceRule other)
+	{
+		return this.MatchFeature == other.MatchFeature && this.ReplaceFeature == other.ReplaceFeature;
 	}
 
 	private void Process(Crate crate)

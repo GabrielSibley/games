@@ -12,9 +12,9 @@ public class MachinePart {
 	public bool CollisionEnabled{
 		set
 		{
-			if(display != null && display.collider)
+			if(display != null && display.GetComponent<Collider>())
 			{
-				display.collider.enabled = value;
+				display.GetComponent<Collider>().enabled = value;
 			}
 		}
 	}

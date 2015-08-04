@@ -19,6 +19,14 @@ public class PrefabManager : MonoBehaviour {
 		}
 	}
 
+	public static PackRuleDisplay PackRuleDisplay
+	{
+		get
+		{
+			return instance.packRuleDisplay;
+		}
+	}
+
 	public static PipeDisplay PipeDisplay
 	{
 		get{
@@ -46,6 +54,7 @@ public class PrefabManager : MonoBehaviour {
 	[SerializeField] private PipeDisplay pipeDisplay;
 	[SerializeField] private GrabberDisplay grabberDisplay;
 	[SerializeField] private MatchReplaceRuleDisplay matchReplaceRuleDisplay;
+	[SerializeField] private PackRuleDisplay packRuleDisplay;
 	[SerializeField] private FourFeatureDisplay fourFeatureDisplay;
 
 	void Awake(){

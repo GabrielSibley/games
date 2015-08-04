@@ -14,22 +14,22 @@ public class PipeDisplay : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (0, 0, Mathf.Rad2Deg * Mathf.Atan2 ((to - midpoint).y, (to - midpoint).x));
 		float repeats = Vector2.Distance(from, to) / PipeSize;
 		transform.localScale = new Vector3(repeats * PipeSize, PipeSize, 1);
-		renderer.material.mainTextureScale = new Vector2(repeats, 1);
+		GetComponent<Renderer>().material.mainTextureScale = new Vector2(repeats, 1);
 
 		if(pipe.Paused)
 		{
-			renderer.material.color = new Color(1, 1, 1, 0.5f);
+			GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f);
 		}
 		else
 		{
-			renderer.material.color = new Color(1, 1, 1, 1);
+			GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
 		}
 	}
 
 	private void Update()
 	{
-		Vector2 offset = renderer.material.mainTextureOffset;
+		Vector2 offset = GetComponent<Renderer>().material.mainTextureOffset;
 		offset.x -= Time.deltaTime;
-		renderer.material.mainTextureOffset = offset;
+		GetComponent<Renderer>().material.mainTextureOffset = offset;
 	}
 }
