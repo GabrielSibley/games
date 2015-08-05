@@ -6,9 +6,9 @@ public class DestroyExactlyRule : IMachineRule {
 
 	public int NumInPorts{ get { return 1; } }
 	public int NumOutPorts{ get { return 0; } }
+	public Crate Filter { get { return filter; } }
 
 	private Crate filter;
-	private FourFeatureDisplay display;
 
 	public DestroyExactlyRule(Crate filter)
 	{
@@ -36,14 +36,16 @@ public class DestroyExactlyRule : IMachineRule {
 		crate = null;
 		return false;
 	}
-	public void UpdateDisplay(Machine machine, Vector2 machinePosition)
+
+	public IMachineRuleDisplay GetDisplay()
 	{
-		if(display == null)
-		{
-			display = Object.Instantiate(PrefabManager.FourFeatureDisplay) as FourFeatureDisplay;
-		}
-		display.Display (filter.Features, machinePosition);
+		return Object.Instantiate(PrefabManager.DestroyExactlyRuleDisplay) as DestroyExactlyRuleDisplay;
 	}
+
+	/*public void UpdateDisplay(Machine machine, Vector2 machinePosition)
+	{
+		display.Display (filter.Features, machinePosition);
+	}*/
 
 	public IMachineRule FreshCopy()
 	{

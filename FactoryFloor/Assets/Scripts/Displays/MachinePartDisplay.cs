@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MachinePartDisplay : TileFeature {
+[PrefabManager]
+public class MachinePartDisplay : MonoBehaviour, IInputReceiver {
 
 	public MachinePart Part;
 	public Machine Machine { get { return Part.Machine; } }
@@ -12,30 +13,13 @@ public class MachinePartDisplay : TileFeature {
 	public SpriteRenderer RendererLR;
 	public Sprite[] TileSprites;
 	
-	public PortDisplay[] PortDisplays;
-
-	public override void MoveToTile(Tile tile){
-		if(CurrentTile != null){
-			CurrentTile.features.Remove (this);
-		}
-		if(tile != null)
-		{
-			tile.features.Add (this);
-			transform.position = tile.transform.position - Vector3.forward;
-		}
-		CurrentTile = tile;
-	}
-
-	public override void Remove()
+	public void Display(Vector2 position)
 	{
-		if(CurrentTile != null)
-		{
-			CurrentTile.features.Remove (this);
-		}
-		CurrentTile = null;
+		transform.position = position + 
+			Vector2.Scale (new Vector2(Part.Offset.x, Part.Offset.y), FloorLayout.TileSize);
 	}
 
-	public override void OnInputDown()
+	public  void OnInputDown()
 	{
 		if(GameMode.Current == GameMode.Mode.SelectMachine)
 		{
@@ -43,7 +27,7 @@ public class MachinePartDisplay : TileFeature {
 		}
 	}
 
-	public void UpdateTile()
+	public void UpdateSubrenderers()
 	{
 		bool[] joins = new bool[8];
 		Vector2i[] offsets = {Vector2i.Up, Vector2i.Up+Vector2i.Left, Vector2i.Left,
@@ -57,23 +41,6 @@ public class MachinePartDisplay : TileFeature {
 		SetSubsprite(RendererUR, joins[0], true, true, joins[6], 2, joins[7]);
 		SetSubsprite(RendererLL, true, joins[2], joins[4], true, 1, joins[3]);
 		SetSubsprite(RendererLR, true, true, joins[4], joins[6], 0, joins[5]);
-	}
-
-	public void UpdatePorts()
-	{
-		for(int i = 0; i < PortDisplays.Length; i++)
-		{
-			if(i < Part.Ports.Count)
-			{
-				Part.Ports[i].SetDisplay(PortDisplays[i]);
-				Part.Ports[i].UpdateDisplay();
-			}
-			else
-			{
-				PortDisplays[i].Port = null;
-				PortDisplays[i].UpdateDisplay();
-			}
-		}
 	}
 
 	private void SetSubsprite(SpriteRenderer subsprite, 

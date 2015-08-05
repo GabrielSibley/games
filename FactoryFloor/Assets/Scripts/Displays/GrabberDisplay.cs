@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[PrefabManager]
 public class GrabberDisplay : MonoBehaviour {
 
 	public SpriteRenderer[] featureRenderers;

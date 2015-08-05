@@ -13,7 +13,6 @@ public class PackRule : IMachineRule {
 	public Port inputA, inputB;
 	private Crate inputBufferA, inputBufferB;
 	private Crate outputOverflow;
-	private PackRuleDisplay display;
 
 	public bool TryPutCrate(Port port, Crate crate)
 	{
@@ -64,13 +63,9 @@ public class PackRule : IMachineRule {
 			return false;
 		}
 	}
-	public void UpdateDisplay(Machine machine, Vector2 machinePosition)
+	public IMachineRuleDisplay GetDisplay()
 	{
-		if(display == null)
-		{
-			display = Object.Instantiate(PrefabManager.PackRuleDisplay) as PackRuleDisplay;
-		}
-		display.Display (machine, machinePosition);
+		return Object.Instantiate(PrefabManager.PackRuleDisplay) as PackRuleDisplay;
 	}
 	
 	public IMachineRule FreshCopy()

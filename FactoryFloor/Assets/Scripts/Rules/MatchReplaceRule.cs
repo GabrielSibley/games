@@ -60,7 +60,6 @@ public class MatchReplaceRule : IMachineRule {
 	public int NumOutPorts{ get { return 1; } }
 	
 	private Crate heldCrate;
-	private MatchReplaceRuleDisplay display;
 
 	public MatchReplaceRule()
 	{
@@ -99,13 +98,9 @@ public class MatchReplaceRule : IMachineRule {
 			return true;
 		}
 	}
-	public void UpdateDisplay(Machine machine, Vector2 machinePosition)
+	public IMachineRuleDisplay GetDisplay()
 	{
-		if(!display)
-		{
-			display = Object.Instantiate(PrefabManager.MatchReplaceRuleDisplay) as MatchReplaceRuleDisplay;
-		}
-		display.Display(this, machine, machinePosition);
+		return Object.Instantiate(PrefabManager.MatchReplaceRuleDisplay) as MatchReplaceRuleDisplay;
 	}
 
 	public IMachineRule FreshCopy()

@@ -26,13 +26,9 @@ public class ProduceRule : IMachineRule {
 		crate = new Crate(Production);
 		return true;
 	}
-	public void UpdateDisplay(Machine machine, Vector2 machinePosition)
+	public IMachineRuleDisplay GetDisplay()
 	{
-		if(display == null)
-		{
-			display = Object.Instantiate(PrefabManager.FourFeatureDisplay) as FourFeatureDisplay;
-		}
-		display.Display (Production.Features, machinePosition);
+		return Object.Instantiate(PrefabManager.ProduceRuleDisplay) as ProduceRuleDisplay;
 	}
 
 	public IMachineRule FreshCopy()

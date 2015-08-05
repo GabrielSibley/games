@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class MachinePort : Port {
-
-	public MachinePart Part;
-	public Machine Machine { get { return Part.Machine; } }
+	
+	public Machine Machine { get; set; }
 	public override bool IsReal{get{return true;}}
 
 	private PortDisplay display;
@@ -23,17 +22,9 @@ public class MachinePort : Port {
 		}
 	}
 
-	public void UpdateDisplay()
-	{
-		display.UpdateDisplay ();
-		if(Pipe != null)
-		{
-			Pipe.UpdateDisplay();
-		}
-	}
-	
 	public void SetDisplay(PortDisplay display)
 	{
+		//TODO: Fix overwriting non null display
 		this.display = display;
 		display.Port = this;
 	}

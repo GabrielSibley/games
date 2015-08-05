@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[PrefabManager]
 public class FourFeatureDisplay : MonoBehaviour {
 
 	public SpriteRenderer[] featureRenderers;

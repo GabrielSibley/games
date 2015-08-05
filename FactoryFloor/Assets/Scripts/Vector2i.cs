@@ -32,6 +32,11 @@ public struct Vector2i{
 	{
 		return !a.Equals (b);
 	}
+
+	public static implicit operator Vector2 (Vector2i a)
+	{
+		return new Vector2(a.x, a.y);
+	}
 	
 	public int x;
 	public int y;

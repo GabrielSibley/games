@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Machine {
 	public static Machine MachineOnCursor;
-	public static List<Machine> PlacedMachines = new List<Machine>();
+	public static List<Machine> PlacedMachines = new List<Machine>(); //TODO: Remove from list on destroy
 
-	public List<MachinePart> Parts = new List<MachinePart>();
 	public IMachineRule Rule;
+	public List<MachinePart> Parts = new List<MachinePart>();
+	public List<MachinePort> Ports = new List<MachinePort>();
 
 	private Tile rootTile;
 	private Tile oldRootTile;
+	private MachineDisplay display;
 
 	public bool HasPartAt(Vector2i offset)
 	{
@@ -28,10 +31,8 @@ public class Machine {
 		MachineOnCursor = this;
 		oldRootTile = rootTile;
 		RootToTile(null);
-		foreach(MachinePart part in Parts)
-		{
-			part.CollisionEnabled = false;
-		}
+		DisplayAt(InputManager.InputWorldPos);
+		display.CollisionEnabled = false;
 	}
 
 	public void Drop(Tile tile)
@@ -42,10 +43,7 @@ public class Machine {
 		}
 		GameMode.Current = GameMode.Mode.SelectMachine;
 		MachineOnCursor = null;
-		foreach(MachinePart part in Parts)
-		{
-			part.CollisionEnabled = true;
-		}
+
 		if(CanRootToTile(tile))
 		{
 			RootToTile(tile);
@@ -53,6 +51,8 @@ public class Machine {
 		else{
 			RootToTile(oldRootTile);
 		}
+
+		display.CollisionEnabled = true;
 	}
 
 	public bool CanRootToTile(Tile tile)
@@ -63,18 +63,18 @@ public class Machine {
 		}
 		foreach(MachinePart part in Parts)
 		{
-			Tile partTile = tile.GetTileAtOffset(part.Offset);
+			Tile targetTile = tile.GetTileAtOffset(part.Offset);
 			//machine part would lie off board
-			if(partTile == null)
+			if(targetTile == null)
 			{
 				return false;
 			}
 			//machine overlaps other, different thing
-			if(partTile.features.Count > 0)
+			if(targetTile.features.Count > 0)
 			{
-				if(partTile.features[0] is MachinePartDisplay)
+				if(targetTile.features[0] is MachinePart)
 				{
-					if(((MachinePartDisplay)partTile.features[0]).Machine != this)
+					if(((MachinePart)targetTile.features[0]).Machine != this)
 					{
 						return false;
 					}
@@ -114,17 +114,58 @@ public class Machine {
 
 	public void DisplayAt(Vector2 position)
 	{
-		foreach(MachinePart part in Parts)
+		if(display == null)
 		{
-			part.DisplayAtWithOffset(position);
+			display = new MachineDisplay();
 		}
-		Rule.UpdateDisplay(this, position);
+		display.Display(this, position);
 	}
 
 	public void AddPart(MachinePart part)
 	{
 		Parts.Add(part);
 		part.Machine = this;
+	}
+
+	public MachinePort AddInPort()
+	{
+		MachinePort newPort = new MachinePort(PortType.In);
+		newPort.Machine = this;
+		Ports.Add (newPort);
+		return newPort;
+	}
+	
+	public MachinePort AddOutPort()
+	{
+		MachinePort newPort = new MachinePort(PortType.Out);
+		newPort.Machine = this;
+		Ports.Add (newPort);
+		return newPort;
+	}
+
+	Vector2[] portOffsets = new Vector2[]{
+		new Vector2(-0.25f, 0.25f), //UL
+		new Vector2(0.25f, -0.25f), //LR
+		new Vector2(0.25f, 0.25f),  //UR
+		new Vector2(-0.25f, -0.25f), //LL
+	};
+	public void LayoutPorts()
+	{
+		Dictionary<MachinePart, int> partsWithPorts = new Dictionary<MachinePart, int>();
+		foreach(Port p in Ports)
+		{
+			int partIndex = Parts.Count > 1 ? Random.Range (1, Parts.Count-1) : 0;
+			MachinePart randomPart = Parts[partIndex];
+			if(!partsWithPorts.ContainsKey(randomPart))
+			{
+				partsWithPorts[randomPart] = 1;
+			}
+			else
+			{
+				partsWithPorts[randomPart]++;
+			}
+			p.Offset = randomPart.Offset + portOffsets[partsWithPorts[randomPart] - 1];
+		}
 	}
 
 	public bool TryPutCrate(Port port, Crate crate)

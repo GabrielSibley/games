@@ -26,7 +26,7 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 			existingMatchReplaceRules.Add (newRule);
 			rule = newRule;
 			MatchReplaceRuleDisplay display = Instantiate(PrefabManager.MatchReplaceRuleDisplay) as MatchReplaceRuleDisplay;
-			display.Display (rule as MatchReplaceRule, null, transform.position);
+			display.Display (rule as MatchReplaceRule, transform.position);
 		}
 		if(type == RuleType.Pack)
 		{
@@ -58,7 +58,7 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 			if(type == RuleType.Pack)
 			{
 				var packRule = (PackRule)mach.Rule;
-				Port[] ports = mach.Parts.SelectMany(x => x.Ports).Where (port => port.Type == PortType.In).ToArray();
+				Port[] ports = mach.Ports.Where (port => port.Type == PortType.In).ToArray();
 				packRule.inputA = ports[0];
 				packRule.inputB = ports[1];
 			}

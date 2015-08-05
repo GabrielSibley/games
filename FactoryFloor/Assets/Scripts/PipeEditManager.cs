@@ -116,18 +116,15 @@ public class PipeEditManager : MonoBehaviour, IInputListener {
 		float minDist = maxSnapDistance;
 		foreach(Machine mach in Machine.PlacedMachines)
 		{
-			foreach(MachinePart part in mach.Parts)
+			foreach(MachinePort port in mach.Ports)
 			{
-				foreach(MachinePort port in part.Ports)
+				if(condition(port))
 				{
-					if(condition(port))
+					float dist = Vector2.Distance (port.WorldPosition, InputManager.InputWorldPos);
+					if(dist < minDist)
 					{
-						float dist = Vector2.Distance (port.WorldPosition, InputManager.InputWorldPos);
-						if(dist < minDist)
-						{
-							minDist = dist;
-							closestPort = port;
-						}
+						minDist = dist;
+						closestPort = port;
 					}
 				}
 			}

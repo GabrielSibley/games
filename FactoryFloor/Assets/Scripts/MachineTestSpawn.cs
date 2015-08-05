@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class MachineTestSpawn {
-	
-	public static Machine GetRandomMachine(){
-		return GetRandomMachineWithRule(GetNewRandomRule());
-	}
 
 	//Doesn't need to add up to 1
 	private static float[] sizeWeights = new float[]{
@@ -71,14 +67,13 @@ public class MachineTestSpawn {
 		//TODO: Will break if >4xMachineSize ports?
 		for(int i = 0; i < machine.Rule.NumInPorts; i++)
 		{
-			var inPart = machine.Parts[Random.Range (0, machine.Parts.Count)];
-			inPart.AddInPort();
+			machine.AddInPort();
 		}
 		for(int i = 0; i < machine.Rule.NumOutPorts; i++)
 		{
-			var outPart = machine.Parts[Random.Range (0, machine.Parts.Count)];
-			outPart.AddOutPort();
+			machine.AddOutPort();
 		}
+		machine.LayoutPorts();
 		return machine;
 	}
 
@@ -96,24 +91,5 @@ public class MachineTestSpawn {
 			}
 		}
 		return weights.Length - 1;
-	}
-
-	private static bool produceNext = true;
-	private static bool destroyNext;
-	private static IMachineRule GetNewRandomRule()
-	{
-		if(destroyNext)
-		{
-			destroyNext = false;
-			return new DestroyRule();
-		}
-		float i = Random.value;
-		if(i < 0.2f || produceNext)
-		{
-			produceNext = false;
-			destroyNext = true;
-			return new ProduceRandomRule(); //Spawn random crates
-		}
-		return MatchReplaceRule.GetRandom();
 	}
 }

@@ -9,6 +9,8 @@ public abstract class Port {
 	public Pipe Pipe; //modify this with Pipe.From and Pipe.To
 	public abstract bool IsReal { get; }
 
+	public Vector2 Offset; //Tile-space offset from machine origin
+
 	public abstract Vector2 WorldPosition{
 		get;
 	}

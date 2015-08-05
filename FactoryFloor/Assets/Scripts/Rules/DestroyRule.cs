@@ -16,9 +16,9 @@ public class DestroyRule : IMachineRule {
 		crate = null;
 		return false;
 	}
-	public void UpdateDisplay(Machine machine, Vector2 machinePosition)
+	public IMachineRuleDisplay GetDisplay()
 	{
-		//no display
+		return null;
 	}
 
 	public IMachineRule FreshCopy()

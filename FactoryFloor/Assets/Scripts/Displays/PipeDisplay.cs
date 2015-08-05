@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[PrefabManager]
 public class PipeDisplay : MonoBehaviour {
 
 	public const float PipeSize = 12;
