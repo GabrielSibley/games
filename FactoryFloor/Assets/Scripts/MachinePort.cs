@@ -28,13 +28,4 @@ public class MachinePort : Port {
 		this.display = display;
 		display.Port = this;
 	}
-
-	public override bool TryPutCrate(Crate crate)
-	{
-		return Machine.TryPutCrate(this, crate);
-	}
-	public override bool TryGetCrate(out Crate crate)
-	{
-		return Machine.TryGetCrate(this, out crate);
-	}
 }

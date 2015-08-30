@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //Destroys matching crates that enter it.
 public class DestroyExactlyRule : IMachineRule {
@@ -15,37 +16,39 @@ public class DestroyExactlyRule : IMachineRule {
 		this.filter = filter;
 	}
 
-	public bool TryPutCrate(Port port, Crate crate)
+	public void Process(Port port, Grabber grabber)
 	{
+		Crate crate = grabber.HeldCrate;
+		bool match = true;
 		if(crate.Features.Count == filter.Features.Count)
 		{
 			for(int i = 0; i < crate.Features.Count; i++)
 			{
 				if(crate.Features[i] != filter.Features[i])
 				{
-					return false;
+					match = false;
 				}
 			}
-			return true;
 		}
-		return  false;
-
+		else
+		{
+			match = false;
+		}
+		if(match)
+		{
+			grabber.Dispatch(null, port);
+		}
 	}
-	public bool TryGetCrate(Port port, out Crate crate)
+
+	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
 	{
-		crate = null;
-		return false;
+		inPorts[0].OnGrabberDocked += Process;
 	}
 
 	public IMachineRuleDisplay GetDisplay()
 	{
 		return Object.Instantiate(PrefabManager.DestroyExactlyRuleDisplay) as DestroyExactlyRuleDisplay;
 	}
-
-	/*public void UpdateDisplay(Machine machine, Vector2 machinePosition)
-	{
-		display.Display (filter.Features, machinePosition);
-	}*/
 
 	public IMachineRule FreshCopy()
 	{

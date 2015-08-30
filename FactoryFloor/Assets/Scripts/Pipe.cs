@@ -103,10 +103,17 @@ public class Pipe {
 
 	private void SetPort(ref Port myPortField, Port targetPort)
 	{
+		List<Grabber> dockedGrabbersToTransfer = null;
 		if(myPortField != null)
 		{
 			myPortField.Pipe = null;
+			dockedGrabbersToTransfer = new List<Grabber>(myPortField.DockedGrabbers);
+			foreach(Grabber g in dockedGrabbersToTransfer)
+			{
+				g.Undock(myPortField);
+			}
 		}
+		myPortField = targetPort;
 		if(targetPort != null)
 		{
 			if(targetPort.Pipe != null)
@@ -114,7 +121,13 @@ public class Pipe {
 				Debug.LogError("Target port already occupied");
 			}
 			targetPort.Pipe = this;
+			if(dockedGrabbersToTransfer != null)
+			{
+				foreach(Grabber g in dockedGrabbersToTransfer)
+				{
+					g.Dock (targetPort);
+				}
+			}
 		}
-		myPortField = targetPort;
 	}
 }

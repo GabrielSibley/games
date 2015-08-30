@@ -14,16 +14,4 @@ public class MouseFollowingPort : Port {
 	{
 		//super
 	}
-
-	public override bool TryPutCrate(Crate crate)
-	{
-		Debug.LogWarning ("Tried to put crate in mouse port");
-		return false;
-	}
-	public override bool TryGetCrate(out Crate crate)
-	{
-		Debug.LogWarning ("Tried to get crate from mouse port");
-		crate = null;
-		return false;
-	}
 }

@@ -10,10 +10,14 @@ using UnityEditorInternal;
 
 public static class GeneratePrefabManager
 {
-
 	private static string path = "Assets/Scripts/PrefabManager.cs";
-	private static string format = 
-@"public static {0} {0} {{	get	{{ return instance.{1}; }} }} [SerializeField] private {0} {1};";
+	private static string format = "\tpublic static {0} {0} {{ get {{ return instance.{1}; }} }}\n\t[SerializeField] private {0} {1};\n";
+	private static string preamble = "// ----- AUTO GENERATED CODE ----- //\n"
+		+"using UnityEngine;\n"
+		+"public class PrefabManager : MonoBehaviour {\n"
+		+"\tprivate static PrefabManager instance;\n"
+		+"\tprivate void Awake(){ instance = this; }\n";
+	private static string postamble = "}\n";
 
 	[MenuItem("Generate/PrefabManager")]
 	public static void Generate()
@@ -22,18 +26,12 @@ public static class GeneratePrefabManager
 		try
 		{
 			StringBuilder builder = new StringBuilder();
-			builder.AppendLine("// ----- AUTO GENERATED CODE ----- //");
-			builder.AppendLine("using UnityEngine;");
-			builder.AppendLine("public class PrefabManager : MonoBehaviour");
-			builder.AppendLine("{");
-			builder.AppendLine("private static PrefabManager instance;");
-			builder.AppendLine("private void Awake(){instance = this; }");
+			builder.Append(preamble);
 			foreach(System.Type type in GetPrefabManagerAttributeTypes())
 			{
-				builder.AppendLine( string.Format(format, type.Name, "_" + type.Name));
-			}
-			
-			builder.AppendLine("}");
+				builder.Append( string.Format(format, type.Name, "_" + type.Name));
+			}			
+			builder.Append(postamble);
 			File.WriteAllText( path, builder.ToString() );
 		}
 		finally{
@@ -46,7 +44,6 @@ public static class GeneratePrefabManager
 		Assembly assembly = Assembly.GetAssembly(typeof(PrefabManagerAttribute));
 		foreach(Type type in assembly.GetTypes()) {
 			if (type.GetCustomAttributes(typeof(PrefabManagerAttribute), true).Length > 0) {
-				Debug.Log (type.ToString());
 				yield return type;
 			}
 		}

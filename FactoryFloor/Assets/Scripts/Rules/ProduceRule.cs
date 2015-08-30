@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //Produces an infinite supply of the given crate.
 //Cannot take crates.
@@ -17,15 +18,11 @@ public class ProduceRule : IMachineRule {
 		Production = produces;
 	}
 
-	public bool TryPutCrate(Port port, Crate crate)
+	private void Process(Port port, Grabber grabber)
 	{
-		return false;
+		grabber.Dispatch(new Crate(Production), port);
 	}
-	public bool TryGetCrate(Port port, out Crate crate)
-	{
-		crate = new Crate(Production);
-		return true;
-	}
+
 	public IMachineRuleDisplay GetDisplay()
 	{
 		return Object.Instantiate(PrefabManager.ProduceRuleDisplay) as ProduceRuleDisplay;
@@ -34,5 +31,10 @@ public class ProduceRule : IMachineRule {
 	public IMachineRule FreshCopy()
 	{
 		return new ProduceRule(new Crate(Production));
+	}
+
+	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	{
+		outPorts[0].OnGrabberDocked += Process;
 	}
 }

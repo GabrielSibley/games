@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum PortType {In, Out};
 
@@ -10,6 +11,11 @@ public abstract class Port {
 	public abstract bool IsReal { get; }
 
 	public Vector2 Offset; //Tile-space offset from machine origin
+	public System.Action<Port, Grabber> OnGrabberDocked;
+	public System.Action<Port, Grabber> OnGrabberUndocked;
+
+	public List<Grabber> DockedGrabbers { get { return dockedGrabbers; } }
+	private List<Grabber> dockedGrabbers = new List<Grabber>();
 
 	public abstract Vector2 WorldPosition{
 		get;
@@ -20,6 +26,20 @@ public abstract class Port {
 		Type = t;
 	}
 
-	public abstract bool TryGetCrate(out Crate crate);
-	public abstract bool TryPutCrate(Crate crate);
+	public void DockGrabber(Grabber grabber)
+	{
+		dockedGrabbers.Add(grabber);
+		if(OnGrabberDocked != null){
+			OnGrabberDocked(this, grabber);
+		}
+	}
+
+	public void UndockGrabber(Grabber grabber)
+	{
+		dockedGrabbers.Remove(grabber);
+		if(OnGrabberUndocked != null)
+		{
+			OnGrabberUndocked(this, grabber);
+		}
+	}
 }

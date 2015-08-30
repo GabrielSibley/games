@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //Destroys all crates that enter it.
 public class DestroyRule : IMachineRule {
@@ -7,15 +8,11 @@ public class DestroyRule : IMachineRule {
 	public int NumInPorts{ get { return 1; } }
 	public int NumOutPorts{ get { return 0; } }
 
-	public bool TryPutCrate(Port port, Crate crate)
+	public void Process(Port port, Grabber grabber)
 	{
-		return true;
+		grabber.Dispatch(null, port);
 	}
-	public bool TryGetCrate(Port port, out Crate crate)
-	{
-		crate = null;
-		return false;
-	}
+
 	public IMachineRuleDisplay GetDisplay()
 	{
 		return null;
@@ -24,5 +21,10 @@ public class DestroyRule : IMachineRule {
 	public IMachineRule FreshCopy()
 	{
 		return new DestroyRule();
+	}
+
+	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	{
+		inPorts[0].OnGrabberDocked += Process;
 	}
 }

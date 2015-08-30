@@ -152,8 +152,22 @@ public class Machine {
 	public void LayoutPorts()
 	{
 		Dictionary<MachinePart, int> partsWithPorts = new Dictionary<MachinePart, int>();
+		List<Port> inPorts = new List<Port>();
+		List<Port> outPorts = new List<Port>();
 		foreach(Port p in Ports)
 		{
+			if(p.Type == PortType.In)
+			{
+				inPorts.Add (p);
+			}
+			else if(p.Type == PortType.Out)
+			{
+				outPorts.Add (p);
+			}
+			else
+			{
+				Debug.LogError ("Unknown port type");
+			}
 			int partIndex = Parts.Count > 1 ? Random.Range (1, Parts.Count-1) : 0;
 			MachinePart randomPart = Parts[partIndex];
 			if(!partsWithPorts.ContainsKey(randomPart))
@@ -166,26 +180,7 @@ public class Machine {
 			}
 			p.Offset = randomPart.Offset + portOffsets[partsWithPorts[randomPart] - 1];
 		}
-	}
 
-	public bool TryPutCrate(Port port, Crate crate)
-	{
-		if(Rule != null)
-		{
-			return Rule.TryPutCrate(port, crate);
-		}
-		Debug.LogError ("Machine has no rule");
-		return false;
-	}
-
-	public bool TryGetCrate(Port port, out Crate crate)
-	{
-		if(Rule != null)
-		{
-			return Rule.TryGetCrate(port, out crate);
-		}
-		Debug.LogError ("Machine has no rule");
-		crate = null;
-		return false;
+		Rule.BindPorts(inPorts, outPorts);
 	}
 }

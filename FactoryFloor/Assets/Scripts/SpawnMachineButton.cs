@@ -8,7 +8,7 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 	
 	public static List<MatchReplaceRule> existingMatchReplaceRules = new List<MatchReplaceRule>();
 
-	public enum RuleType { Produce, Destroy, MatchReplace, Pack };
+	public enum RuleType { Produce, Destroy, DestroyAny, MatchReplace, Pack, Unpack };
 
 	public RuleType type;
 
@@ -34,6 +34,12 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 			PackRuleDisplay display = Instantiate(PrefabManager.PackRuleDisplay) as PackRuleDisplay;
 			display.Display(null, transform.position);
 		}
+		if(type == RuleType.Unpack)
+		{
+			rule = new UnpackRule();
+			UnpackRuleDisplay display = Instantiate(PrefabManager.UnpackRuleDisplay) as UnpackRuleDisplay;
+			display.Display (null, transform.position);
+		}
 	}
 
 	public void OnInputDown(){
@@ -54,14 +60,12 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 				rule = new DestroyExactlyRule(crate);
 			}
 
-			Machine mach = MachineTestSpawn.GetRandomMachineWithRule(rule.FreshCopy());
-			if(type == RuleType.Pack)
+			if(type == RuleType.DestroyAny)
 			{
-				var packRule = (PackRule)mach.Rule;
-				Port[] ports = mach.Ports.Where (port => port.Type == PortType.In).ToArray();
-				packRule.inputA = ports[0];
-				packRule.inputB = ports[1];
+				rule = new DestroyRule();
 			}
+
+			Machine mach = MachineTestSpawn.GetRandomMachineWithRule(rule.FreshCopy());
 			mach.PickUp();
 		}
 	}

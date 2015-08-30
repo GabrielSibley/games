@@ -58,8 +58,8 @@ public class MatchReplaceRule : IMachineRule {
 
 	public int NumInPorts{ get { return 1; } }
 	public int NumOutPorts{ get { return 1; } }
-	
-	private Crate heldCrate;
+
+	private Port inPort, outPort;
 
 	public MatchReplaceRule()
 	{
@@ -71,33 +71,20 @@ public class MatchReplaceRule : IMachineRule {
 		ReplaceFeature = replace;
 	}
 
-	public bool TryPutCrate(Port port, Crate crate)
+	//Todo: This could explode if grabber can round-trip in one time step
+	public void Process(Port port, Grabber grabber)
 	{
-		if(heldCrate == null)
+		if(inPort.DockedGrabbers.Count > 0 && outPort.DockedGrabbers.Count > 0)
 		{
-			heldCrate = crate;
-			Process(crate);
-			return true;
-		}
-		else
-		{
-			return false;
+			Grabber inGrabber = inPort.DockedGrabbers[0];
+			Grabber outGrabber = outPort.DockedGrabbers[0];
+			Crate crate = inGrabber.HeldCrate;
+			DoMatchReplace(crate);
+			outGrabber.Dispatch(crate, outPort);
+			inGrabber.Dispatch(null, inPort);
 		}
 	}
-	public bool TryGetCrate(Port port, out Crate crate)
-	{
-		if(heldCrate == null)
-		{
-			crate = null;
-			return false;
-		}
-		else
-		{
-			crate = heldCrate;
-			heldCrate = null;
-			return true;
-		}
-	}
+
 	public IMachineRuleDisplay GetDisplay()
 	{
 		return Object.Instantiate(PrefabManager.MatchReplaceRuleDisplay) as MatchReplaceRuleDisplay;
@@ -113,7 +100,7 @@ public class MatchReplaceRule : IMachineRule {
 		return this.MatchFeature == other.MatchFeature && this.ReplaceFeature == other.ReplaceFeature;
 	}
 
-	private void Process(Crate crate)
+	private void DoMatchReplace(Crate crate)
 	{
 		for(int i = 0; i < crate.Features.Count; i++)
 		{
@@ -131,6 +118,14 @@ public class MatchReplaceRule : IMachineRule {
 				crate.Features[i] = newFeature;
 			}
 		}
+	}
+
+	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	{
+		inPort = inPorts[0];
+		outPort = outPorts[0];
+		inPorts[0].OnGrabberDocked += Process;
+		outPorts[0].OnGrabberDocked += Process;
 	}
 
 }

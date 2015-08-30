@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //Takes two crates and produces one crate with the combined contents.
 //If the two crates have more than 4 features combined, two crates are produced
@@ -10,59 +11,38 @@ public class PackRule : IMachineRule {
 	public int NumInPorts{ get { return 2; } }
 	public int NumOutPorts{ get { return 1; } }
 
-	public Port inputA, inputB;
-	private Crate inputBufferA, inputBufferB;
+	private Port inputA, inputB, output;
 	private Crate outputOverflow;
 
-	public bool TryPutCrate(Port port, Crate crate)
+	private void OnGrabberDocked(Port port, Grabber grabber)
 	{
-		if(outputOverflow != null)
+		if(port == output && outputOverflow != null)
 		{
-			return false;
-		}
-		if(port == inputA && inputBufferA == null)
-		{
-			inputBufferA = crate;
-			return true;
-		}
-		if(port == inputB && inputBufferB == null)
-		{
-			inputBufferB = crate;
-			return true;
-		}
-		return false;
-	}
-	public bool TryGetCrate(Port port, out Crate crate)
-	{
-		if(outputOverflow != null)
-		{
-			crate = outputOverflow;
+			grabber.Dispatch(outputOverflow, port);
 			outputOverflow = null;
-			return true;
 		}
-		else if(inputBufferA != null && inputBufferB != null)
+		else if(inputA.DockedGrabbers.Count > 0
+		   && inputB.DockedGrabbers.Count > 0
+		   && output.DockedGrabbers.Count > 0)
 		{
-			int featuresMoved = Mathf.Max (Crate.MaxFeatures - inputBufferA.Features.Count, inputBufferB.Features.Count);
-			crate = inputBufferA;
+			Crate inCrateA = inputA.DockedGrabbers[0].HeldCrate;
+			Crate inCrateB = inputB.DockedGrabbers[0].HeldCrate;
+			int featuresMoved = Mathf.Min (Crate.MaxFeatures - inCrateA.Features.Count, inCrateB.Features.Count);
 			for(int i = 0; i < featuresMoved; i++)
 			{
-				crate.Features.Add(inputBufferB.Features[i]);
+				inCrateA.Features.Add(inCrateB.Features[i]);
 			}
-			if(featuresMoved < inputBufferB.Features.Count)
+			if(featuresMoved < inCrateB.Features.Count)
 			{
-				inputBufferB.Features.RemoveRange (0, featuresMoved);
-				outputOverflow = inputBufferB;
+				inCrateB.Features.RemoveRange (0, featuresMoved);
+				outputOverflow = inCrateB;
 			}
-			inputBufferA = null;
-			inputBufferB = null;
-			return true;
-		}
-		else
-		{
-			crate = null;
-			return false;
+			inputA.DockedGrabbers[0].Dispatch(null, inputA);
+			inputB.DockedGrabbers[0].Dispatch(null, inputB);
+			output.DockedGrabbers[0].Dispatch(inCrateA, output);
 		}
 	}
+
 	public IMachineRuleDisplay GetDisplay()
 	{
 		return Object.Instantiate(PrefabManager.PackRuleDisplay) as PackRuleDisplay;
@@ -71,5 +51,15 @@ public class PackRule : IMachineRule {
 	public IMachineRule FreshCopy()
 	{
 		return new PackRule();
+	}
+
+	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	{
+		inputA = inPorts[0];
+		inputB = inPorts[1];
+		output = outPorts[0];
+		inputA.OnGrabberDocked += OnGrabberDocked;
+		inputB.OnGrabberDocked += OnGrabberDocked;
+		output.OnGrabberDocked += OnGrabberDocked;
 	}
 }
