@@ -7,7 +7,12 @@ public class PortDisplay : MonoBehaviour {
 	private const float displayDepth = -25f;
 
 	public Sprite InPortSprite;
+	public Sprite InPortFirstSprite;
+	public Sprite InPortLastSprite;
 	public Sprite OutPortSprite;
+	public Sprite OutPortFirstSprite;
+	public Sprite OutPortLastSprite;
+
 	public SpriteRenderer SpriteRenderer;
 
 	public Port Port; 
@@ -21,11 +26,27 @@ public class PortDisplay : MonoBehaviour {
 		}
 		else if(Port.Type == PortType.In)
 		{
-			SpriteRenderer.sprite = InPortSprite;
+			if(Port.Effect == PortEffect.First){
+				SpriteRenderer.sprite = InPortFirstSprite;
+			}
+			else if(Port.Effect == PortEffect.Last){
+				SpriteRenderer.sprite = InPortLastSprite;
+			}
+			else{
+				SpriteRenderer.sprite = InPortSprite;
+			}
 		}
 		else
 		{
-			SpriteRenderer.sprite = OutPortSprite;
+			if(Port.Effect == PortEffect.First){
+				SpriteRenderer.sprite = OutPortFirstSprite;
+			}
+			else if(Port.Effect == PortEffect.Last){
+				SpriteRenderer.sprite = OutPortLastSprite;
+			}
+			else{
+				SpriteRenderer.sprite = OutPortSprite;
+			}
 		}
 		transform.position = new Vector3(pos.x + Port.Offset.x * FloorLayout.TileSize.x,
 		                                 pos.y + Port.Offset.y * FloorLayout.TileSize.y,

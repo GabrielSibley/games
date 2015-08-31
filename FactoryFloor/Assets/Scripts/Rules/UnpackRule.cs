@@ -55,5 +55,7 @@ public class UnpackRule : IMachineRule {
 		input.OnGrabberDocked += OnGrabberDocked;
 		outputSingle.OnGrabberDocked += OnGrabberDocked;
 		outputRemainder.OnGrabberDocked += OnGrabberDocked;
+		outputSingle.Effect = PortEffect.Last;
+		outputRemainder.Effect = PortEffect.First;
 	}
 }

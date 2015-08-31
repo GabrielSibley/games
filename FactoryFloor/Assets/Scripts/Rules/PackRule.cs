@@ -61,5 +61,7 @@ public class PackRule : IMachineRule {
 		inputA.OnGrabberDocked += OnGrabberDocked;
 		inputB.OnGrabberDocked += OnGrabberDocked;
 		output.OnGrabberDocked += OnGrabberDocked;
+		inputA.Effect = PortEffect.First;
+		inputB.Effect = PortEffect.Last;
 	}
 }

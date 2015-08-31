@@ -48,15 +48,21 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 			if(type == RuleType.Produce)
 			{
 				Crate crate = new Crate();
-				crate.Features.Add (CrateFeature.RandomNonWild());
-				crate.Features.Add (CrateFeature.RandomNonWild());
+				int numFeatures = Random.Range (1, 4);				
+				for(int i = 0; i < numFeatures; i++)
+				{			
+					crate.Features.Add (CrateFeature.RandomNonWild());
+				}
 				rule = new ProduceRule(crate);
 			}
 			if(type == RuleType.Destroy)
 			{
 				Crate crate = new Crate();
-				crate.Features.Add (CrateFeature.RandomNonWild());
-				crate.Features.Add (CrateFeature.RandomNonWild());
+				int numFeatures = Random.Range (1, 4);				
+				for(int i = 0; i < numFeatures; i++)
+				{			
+					crate.Features.Add (CrateFeature.RandomNonWild());
+				}
 				rule = new DestroyExactlyRule(crate);
 			}
 

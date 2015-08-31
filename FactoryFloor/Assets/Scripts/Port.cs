@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum PortType {In, Out};
+public enum PortEffect { Default, First, Last };
 
 public abstract class Port {
 
 	public PortType Type;
+	public PortEffect Effect;
 	public Pipe Pipe; //modify this with Pipe.From and Pipe.To
 	public abstract bool IsReal { get; }
 
