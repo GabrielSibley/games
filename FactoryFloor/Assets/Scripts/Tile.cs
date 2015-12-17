@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Tile : MonoBehaviour, IInputReceiver{
+public class Tile {
 
 	public Vector2i Position;
 
@@ -10,13 +10,6 @@ public class Tile : MonoBehaviour, IInputReceiver{
 
 	public Tile GetTileAtOffset(Vector2i offset)
 	{
-		return FloorLayout.GetTile(Position + offset);
-	}
-
-	public void OnInputDown()
-	{
-		if(Machine.MachineOnCursor != null){
-			Machine.MachineOnCursor.Drop(this);
-		}
+		return Floor.GetTile(Position + offset);
 	}
 }

@@ -72,7 +72,8 @@ public class SpawnMachineButton : MonoBehaviour, IInputReceiver {
 			}
 
 			Machine mach = MachineTestSpawn.GetRandomMachineWithRule(rule.FreshCopy());
-			mach.PickUp();
+
+			throw new System.Exception("Don't know how to pick up a machine right now");
 		}
 	}
 }

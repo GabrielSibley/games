@@ -3,67 +3,77 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Machine {
-	public static Machine MachineOnCursor;
+public class Machine : IUpdatable {
 	public static List<Machine> PlacedMachines = new List<Machine>(); //TODO: Remove from list on destroy
 
 	public IMachineRule Rule;
 	public List<MachinePart> Parts = new List<MachinePart>();
 	public List<MachinePort> Ports = new List<MachinePort>();
-
-	private Tile rootTile;
-	private Tile oldRootTile;
+	//True if machine is rooted (exists on the game grid).
+	public bool Rooted {
+		get { return Origin.HasValue; }
+		set {
+			if(!value)
+			{
+				Origin = null;
+			}
+			else
+			{
+				throw new System.ArgumentException ("Can't set true directly");
+			}
+		}
+	}
+	//Root point on game grid. Machines not on the game grid have a null Origin.
+	public Vector2i? Origin
+	{
+		get { return _origin; }
+		set {
+			if(_origin.HasValue && value == null)
+			{
+				PlacedMachines.Remove (this);
+			}
+			if(!_origin.HasValue && value != null)
+			{
+				PlacedMachines.Add (this);
+			}
+			_origin = value;
+			ConfigPartsForOriginTile(Floor.GetTile(value));
+		}
+	}
+	private Vector2i? _origin;
+	
 	private MachineDisplay display;
+
+	public Machine()
+	{
+		Ticker.Instance.Add (this);
+	}
 
 	public bool HasPartAt(Vector2i offset)
 	{
 		return Parts.Exists (part => part.Offset == offset);
 	}
 
-	public void PickUp(){
-		if(MachineOnCursor != null)
-		{
-			Debug.LogError ("Already carrying a machine on cursor!");
-			return;
-		}
-		PlacedMachines.Remove (this);
-		GameMode.Current = GameMode.Mode.MoveMachine;
-		MachineOnCursor = this;
-		oldRootTile = rootTile;
-		RootToTile(null);
-		DisplayAt(InputManager.InputWorldPos);
-		display.CollisionEnabled = false;
+	public void Update(float deltaTime)
+	{
+		//Do nothing for now
 	}
 
-	public void Drop(Tile tile)
+	public void InitSimDisplay()
 	{
-		if(MachineOnCursor != this)
-		{
-			Debug.LogError ("Was not carrying this machine on cursor");
-		}
-		GameMode.Current = GameMode.Mode.SelectMachine;
-		MachineOnCursor = null;
-
-		if(CanRootToTile(tile))
-		{
-			RootToTile(tile);
-		}
-		else{
-			RootToTile(oldRootTile);
-		}
-
-		display.CollisionEnabled = true;
+		display = new MachineDisplay(this);
 	}
 
-	public bool CanRootToTile(Tile tile)
+	public bool CanMoveToOrigin(Vector2i newOrigin)
 	{
-		if(tile == null)
+		Tile originTile = Floor.GetTile(newOrigin);
+		if(originTile == null)
 		{
 			return false;
 		}
 		foreach(MachinePart part in Parts)
 		{
-			Tile targetTile = tile.GetTileAtOffset(part.Offset);
+			Tile targetTile = originTile.GetTileAtOffset(part.Offset);
 			//machine part would lie off board
 			if(targetTile == null)
 			{
@@ -85,40 +95,6 @@ public class Machine {
 			}
 		}
 		return true;
-	}
-
-	public void RootToTile(Tile tile)
-	{
-		if(tile == null)
-		{
-			rootTile = tile;
-			foreach(MachinePart part in Parts){
-				part.MoveToTile(null);
-			}
-		}
-		else if(!CanRootToTile(tile))
-		{
-			Debug.LogError ("Cannot root machine to tile " + tile);
-			return;
-		}
-		else{
-			PlacedMachines.Add (this);
-			rootTile = tile;
-			foreach(MachinePart part in Parts)
-			{
-				part.MoveToTile(tile.GetTileAtOffset(part.Offset));
-			}
-			DisplayAt(tile.transform.position);
-		}
-	}
-
-	public void DisplayAt(Vector2 position)
-	{
-		if(display == null)
-		{
-			display = new MachineDisplay();
-		}
-		display.Display(this, position);
 	}
 
 	public void AddPart(MachinePart part)
@@ -182,5 +158,22 @@ public class Machine {
 		}
 
 		Rule.BindPorts(inPorts, outPorts);
+	}
+
+
+	private void ConfigPartsForOriginTile(Tile tile)
+	{
+		if(tile == null)
+		{
+			foreach(MachinePart part in Parts){
+				part.MoveToTile(null);
+			}
+		}
+		else{
+			foreach(MachinePart part in Parts)
+			{
+				part.MoveToTile(tile.GetTileAtOffset(part.Offset));
+			}
+		}
 	}
 }

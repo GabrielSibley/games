@@ -16,14 +16,14 @@ public class MachinePartDisplay : MonoBehaviour, IInputReceiver {
 	public void Display(Vector2 position)
 	{
 		transform.position = position + 
-			Vector2.Scale (new Vector2(Part.Offset.x, Part.Offset.y), FloorLayout.TileSize);
+			Vector2.Scale (new Vector2(Part.Offset.x, Part.Offset.y), FloorView.TileSize);
 	}
 
 	public  void OnInputDown()
 	{
 		if(GameMode.Current == GameMode.Mode.SelectMachine)
 		{
-			Machine.PickUp();
+			Machine.Rooted = false;
 		}
 	}
 

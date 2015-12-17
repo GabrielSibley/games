@@ -48,8 +48,8 @@ public class PortDisplay : MonoBehaviour {
 				SpriteRenderer.sprite = OutPortSprite;
 			}
 		}
-		transform.position = new Vector3(pos.x + Port.Offset.x * FloorLayout.TileSize.x,
-		                                 pos.y + Port.Offset.y * FloorLayout.TileSize.y,
+		transform.position = new Vector3(pos.x + Port.Offset.x * FloorView.TileSize.x,
+		                                 pos.y + Port.Offset.y * FloorView.TileSize.y,
 		                                 displayDepth);
 
 		//HACK: Make it so pipes update display when machines are dragged

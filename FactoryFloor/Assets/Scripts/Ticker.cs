@@ -33,10 +33,6 @@ public class Ticker : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Machine.MachineOnCursor != null){
-			Machine.MachineOnCursor.DisplayAt(InputManager.InputWorldPos);
-		}
-
 		for(updateIteratorIndex = 0; updateIteratorIndex < updatables.Count; updateIteratorIndex++)
 		{
 			updatables[updateIteratorIndex].Update(Time.deltaTime);

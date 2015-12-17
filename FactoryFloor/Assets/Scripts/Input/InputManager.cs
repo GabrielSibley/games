@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour {
 
 	public static List<IInputListener> InputListeners = new List<IInputListener>();
 
+	public static IDraggable Dragged;
+
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetMouseButtonDown (0)){
@@ -33,5 +35,10 @@ public class InputManager : MonoBehaviour {
 		get{
 			return Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		}
+	}
+
+	public static Vector2 SimToWorld(Vector2 simPos)
+	{
+		return (Vector2)FloorView.GetTile(new Vector2i(0, 0)).transform.position + Vector2.Scale (simPos, FloorView.TileSize);
 	}
 }
