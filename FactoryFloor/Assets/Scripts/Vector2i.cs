@@ -23,6 +23,10 @@ public struct Vector2i{
 		return new Vector2i(a.x + b.x, a.y + b.y);
 	}
 
+	public static Vector2i operator - (Vector2i a, Vector2i b){
+		return new Vector2i(a.x - b.x, a.y - b.y);
+	}
+
 	public static bool operator == (Vector2i a, Vector2i b)
 	{
 		return a.Equals (b);
@@ -45,6 +49,12 @@ public struct Vector2i{
 		this.x = x;
 		this.y = y;
 	}
+
+    public Vector2i(Vector2 src)
+    {
+        this.x = (int)src.x;
+        this.y = (int)src.y;
+    }
 	
 	public override bool Equals(object other)
 	{
@@ -58,6 +68,11 @@ public struct Vector2i{
 
 	public override int GetHashCode(){
 		return x * 101 + y;
+	}
+
+	public override string ToString ()
+	{
+		return x + ", " + y;
 	}
 }
 

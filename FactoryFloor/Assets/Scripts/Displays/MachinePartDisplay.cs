@@ -13,17 +13,16 @@ public class MachinePartDisplay : MonoBehaviour, IInputReceiver {
 	public SpriteRenderer RendererLR;
 	public Sprite[] TileSprites;
 	
-	public void Display(Vector2 position)
+	public void Display()
 	{
-		transform.position = position + 
-			Vector2.Scale (new Vector2(Part.Offset.x, Part.Offset.y), FloorView.TileSize);
+
 	}
 
 	public  void OnInputDown()
 	{
 		if(GameMode.Current == GameMode.Mode.SelectMachine)
 		{
-			Machine.Rooted = false;
+			Machine.RemoveFromFloor();
 		}
 	}
 

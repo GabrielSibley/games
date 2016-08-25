@@ -13,11 +13,6 @@ public class DestroyRule : IMachineRule {
 		grabber.Dispatch(null, port);
 	}
 
-	public IMachineRuleDisplay GetDisplay()
-	{
-		return null;
-	}
-
 	public IMachineRule FreshCopy()
 	{
 		return new DestroyRule();

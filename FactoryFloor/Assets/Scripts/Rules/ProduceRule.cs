@@ -23,11 +23,6 @@ public class ProduceRule : IMachineRule {
 		grabber.Dispatch(new Crate(Production), port);
 	}
 
-	public IMachineRuleDisplay GetDisplay()
-	{
-		return Object.Instantiate(PrefabManager.ProduceRuleDisplay) as ProduceRuleDisplay;
-	}
-
 	public IMachineRule FreshCopy()
 	{
 		return new ProduceRule(new Crate(Production));

@@ -43,11 +43,6 @@ public class PackRule : IMachineRule {
 		}
 	}
 
-	public IMachineRuleDisplay GetDisplay()
-	{
-		return Object.Instantiate(PrefabManager.PackRuleDisplay) as PackRuleDisplay;
-	}
-	
 	public IMachineRule FreshCopy()
 	{
 		return new PackRule();

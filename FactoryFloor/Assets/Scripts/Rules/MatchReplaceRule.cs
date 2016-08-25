@@ -85,11 +85,6 @@ public class MatchReplaceRule : IMachineRule {
 		}
 	}
 
-	public IMachineRuleDisplay GetDisplay()
-	{
-		return Object.Instantiate(PrefabManager.MatchReplaceRuleDisplay) as MatchReplaceRuleDisplay;
-	}
-
 	public IMachineRule FreshCopy()
 	{
 		return new MatchReplaceRule(MatchFeature, ReplaceFeature);

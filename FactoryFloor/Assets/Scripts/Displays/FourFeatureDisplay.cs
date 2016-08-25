@@ -7,9 +7,8 @@ public class FourFeatureDisplay : MonoBehaviour {
 
 	public SpriteRenderer[] featureRenderers;
 	
-	public void Display(IList<CrateFeature> features, Vector3 position)
+	public void Display(IList<CrateFeature> features)
 	{
-		transform.position = position;
 		for(int i = 0; i < featureRenderers.Length; i++)
 		{
 			if(features.Count <= i)

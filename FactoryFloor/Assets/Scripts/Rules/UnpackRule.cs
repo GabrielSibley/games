@@ -37,10 +37,6 @@ public class UnpackRule : IMachineRule {
 			}
 		}
 	}
-	public IMachineRuleDisplay GetDisplay()
-	{
-		return Object.Instantiate(PrefabManager.UnpackRuleDisplay) as UnpackRuleDisplay;
-	}
 	
 	public IMachineRule FreshCopy()
 	{

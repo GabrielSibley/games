@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MachineDisplay : IDraggable {
+[PrefabManager()]
+public class MachineDisplay : MonoBehaviour, IDraggable {
 
 	Machine machine;
-	List<MachinePartDisplay> machinePartDisplays;
-	List<PortDisplay> portDisplays;
-	IMachineRuleDisplay ruleDisplay;
-	bool initialized;
+	List<MachinePartDisplay> machinePartDisplays = new List<MachinePartDisplay>();
+	List<PortDisplay> portDisplays = new List<PortDisplay>();
+	MachineRuleDisplay ruleDisplay;
 
 	Vector2i? oldOrigin;
 
@@ -25,39 +25,64 @@ public class MachineDisplay : IDraggable {
 		}
 	}
 
-	public MachineDisplay(Machine mach)
+	public void Init(Machine mach)
 	{
-		if(!initialized)
+        if(machine != mach)
+        {
+            Cleanup();
+        }
+        machine = mach;
+
+		foreach(var part in mach.Parts)
 		{
-			machine = mach;
-			machinePartDisplays = new List<MachinePartDisplay>();
-			foreach(var part in mach.Parts)
-			{
-				var display = Object.Instantiate(PrefabManager.MachinePartDisplay) as MachinePartDisplay;
-				display.Part = part;
-				display.UpdateSubrenderers();
-				machinePartDisplays.Add (display);
-			}
-			
-			portDisplays = new List<PortDisplay>();
-			foreach(var port in mach.Ports)
-			{
-				var display = Object.Instantiate(PrefabManager.PortDisplay) as PortDisplay;
-				port.SetDisplay (display);
-				portDisplays.Add (display);
-			}
-			
-			ruleDisplay = mach.Rule.GetDisplay();
+			var display = Object.Instantiate(PrefabManager.MachinePartDisplay) as MachinePartDisplay;
+			display.Part = part;
+            display.transform.SetParent(transform);
+            display.transform.localPosition = FloorView.FloorToWorldVector(part.Offset);
+			display.UpdateSubrenderers();
+			machinePartDisplays.Add (display);
 		}
-		initialized = true;
+			
+		foreach(var port in mach.Ports)
+		{
+			var display = Object.Instantiate(PrefabManager.PortDisplay) as PortDisplay;
+			port.SetDisplay (display);
+            display.transform.SetParent(transform);
+            display.transform.localPosition = (Vector3)FloorView.FloorToWorldVector(port.Offset) + new Vector3(0, 0, -25);
+			portDisplays.Add (display);
+		}
+			
+		ruleDisplay = Object.Instantiate(MachineRuleDisplayUtil.GetDisplayPrefabForRule(mach.Rule)) as MachineRuleDisplay; //TODO: Kind of broken (?)
+        ruleDisplay.transform.SetParent(transform);
+        ruleDisplay.transform.localPosition = (Vector3)FloorView.FloorToWorldVector(mach.Parts[0].Offset) + new Vector3(0, 0, -10);
 	}
+
+    private void Cleanup()
+    {
+        foreach(var partDisplay in machinePartDisplays)
+        {
+            Destroy(partDisplay.gameObject);
+        }
+        machinePartDisplays.Clear();
+        foreach(var portDisplay in portDisplays)
+        {
+            Destroy(portDisplay.gameObject);
+        }
+        portDisplays.Clear();
+        if (ruleDisplay)
+        {
+            Destroy(ruleDisplay.gameObject);
+        }
+        machine = null;
+    }
 
 	public void OnDragStart(Vector2 inPos){
 		oldOrigin = machine.Origin;
 		GameMode.Current = GameMode.Mode.MoveMachine;
-		machine.Rooted = false;
+		machine.RemoveFromFloor();
 		CollisionEnabled = false;
-		Display(inPos);
+        transform.position = inPos;
+        Display(machine);
 	}
 
 	//Failed drag -- return to old position
@@ -67,7 +92,7 @@ public class MachineDisplay : IDraggable {
 		{
 			throw new System.Exception("Dropped machine with no old origin -- what now?");
 		}
-		machine.Origin = oldOrigin;
+		machine.AddToFloor(oldOrigin.Value);
 		CollisionEnabled = true;
 		if(GameMode.Current == GameMode.Mode.MoveMachine)
 		{
@@ -77,30 +102,26 @@ public class MachineDisplay : IDraggable {
 
 	public void OnDragged(Vector2 inPos)
 	{
-		Display(inPos);
+        transform.position = inPos;
 	}
 
 
-	public void Display(Vector2 pos)
+	public void Display(Machine machine)
 	{
+        if(machine != this.machine)
+        {
+            Init(machine);
+        }
 		foreach(MachinePartDisplay part in machinePartDisplays)
 		{
-			part.Display(pos);
+			part.Display();
 		}
 		foreach(PortDisplay port in portDisplays)
 		{
-			port.Display(pos);
+			port.Display();
 		}
 		if(ruleDisplay != null){
-			ruleDisplay.Display(machine, pos);
-		}
-	}
-
-	public void DisplayAtMachinePosition()
-	{
-		if(machine.Origin.HasValue)
-		{
-			Display(InputManager.SimToWorld(machine.Origin.Value));
+			ruleDisplay.Display(machine);
 		}
 	}
 }

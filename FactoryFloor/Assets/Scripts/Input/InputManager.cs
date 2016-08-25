@@ -9,8 +9,7 @@ public class InputManager : MonoBehaviour {
 
 	public static IDraggable Dragged;
 
-	// Update is called once per frame
-	void Update () {
+	public void ProcessInput () {
 		if(Input.GetMouseButtonDown (0)){
 			foreach(var listener in InputListeners)
 			{
@@ -37,8 +36,9 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	public static Vector2 SimToWorld(Vector2 simPos)
+	//Returns world position of floorPos
+	public static Vector2 FloorToWorld(Vector2i floorPos)
 	{
-		return (Vector2)FloorView.GetTile(new Vector2i(0, 0)).transform.position + Vector2.Scale (simPos, FloorView.TileSize);
+		throw new System.Exception("implement later");
 	}
 }

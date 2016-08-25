@@ -45,11 +45,6 @@ public class DestroyExactlyRule : IMachineRule {
 		inPorts[0].OnGrabberDocked += Process;
 	}
 
-	public IMachineRuleDisplay GetDisplay()
-	{
-		return Object.Instantiate(PrefabManager.DestroyExactlyRuleDisplay) as DestroyExactlyRuleDisplay;
-	}
-
 	public IMachineRule FreshCopy()
 	{
 		return new DestroyExactlyRule(new Crate(filter));

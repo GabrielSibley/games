@@ -112,6 +112,8 @@ public class PipeEditManager : MonoBehaviour, IInputListener {
 
 	private MachinePort GetClosestMachinePortToCursorWithQuality(Predicate<MachinePort> condition)
 	{
+		throw new System.Exception("here be dragons");
+		/*
 		MachinePort closestPort = null;
 		float minDist = maxSnapDistance;
 		foreach(Machine mach in Machine.PlacedMachines)
@@ -130,5 +132,6 @@ public class PipeEditManager : MonoBehaviour, IInputListener {
 			}
 		}
 		return closestPort;
+		*/
 	}
 }
