@@ -16,7 +16,7 @@ public class DestroyExactlyRule : IMachineRule {
 		this.filter = filter;
 	}
 
-	public void Process(Port port, Grabber grabber)
+	public void Process(Dock port, Grabber grabber)
 	{
 		Crate crate = grabber.HeldCrate;
 		bool match = true;
@@ -40,7 +40,7 @@ public class DestroyExactlyRule : IMachineRule {
 		}
 	}
 
-	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	public void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts)
 	{
 		inPorts[0].OnGrabberDocked += Process;
 	}

@@ -44,12 +44,14 @@ public class Floor {
 	public void AddMachine(Machine machine)
 	{
 		Machines.Add (machine);
+        Simulation.Tick(machine);
 		RecalcSpace();
 	}
 	
 	public void RemoveMachine(Machine machine)
 	{
 		Machines.Remove (machine);
+        Simulation.Untick(machine);
 		RecalcSpace();
 	}
 	

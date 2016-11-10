@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Machine {
+public class Machine: IUpdatable {
 
 	//Doesn't need to add up to 1
 	private static float[] sizeWeights = new float[]{
@@ -18,7 +18,7 @@ public class Machine {
 	public IMachineRule Rule;
 	public Simulation Simulation;
 	public List<MachinePart> Parts = new List<MachinePart>();
-	public List<MachinePort> Ports = new List<MachinePort>();
+	public List<MachineDock> Ports = new List<MachineDock>();
 
 	//True if machine is placed on the floor
 	public bool OnFloor {
@@ -148,17 +148,17 @@ public class Machine {
 		part.Machine = this;
 	}
 
-	private MachinePort AddInPort()
+	private MachineDock AddInPort()
 	{
-		MachinePort newPort = new MachinePort(PortType.In);
+		MachineDock newPort = new MachineDock(this, DockType.In);
 		newPort.Machine = this;
 		Ports.Add (newPort);
 		return newPort;
 	}
 	
-	private MachinePort AddOutPort()
+	private MachineDock AddOutPort()
 	{
-		MachinePort newPort = new MachinePort(PortType.Out);
+		MachineDock newPort = new MachineDock(this, DockType.Out);
 		newPort.Machine = this;
 		Ports.Add (newPort);
 		return newPort;
@@ -173,15 +173,15 @@ public class Machine {
 	private void LayoutPorts()
 	{
 		Dictionary<MachinePart, int> partsWithPorts = new Dictionary<MachinePart, int>();
-		List<Port> inPorts = new List<Port>();
-		List<Port> outPorts = new List<Port>();
-		foreach(Port p in Ports)
+		List<Dock> inPorts = new List<Dock>();
+		List<Dock> outPorts = new List<Dock>();
+		foreach(MachineDock p in Ports)
 		{
-			if(p.Type == PortType.In)
+			if(p.Type == DockType.In)
 			{
 				inPorts.Add (p);
 			}
-			else if(p.Type == PortType.Out)
+			else if(p.Type == DockType.Out)
 			{
 				outPorts.Add (p);
 			}

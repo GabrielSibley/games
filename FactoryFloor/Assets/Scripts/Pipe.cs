@@ -4,41 +4,44 @@ using System.Collections.Generic;
 
 public class Pipe {
 
-	public Port From
-	{
-		get
-		{
-			return fromPort;
-		}
-		set
-		{
-			SetPort(ref fromPort, value);
-		}
-	}
-	private Port fromPort;
+    public Simulation Simulation;
 
-	public Port To
+	public Dock From
 	{
 		get
 		{
-			return toPort;
+			return fromEnd;
 		}
 		set
 		{
-			SetPort(ref toPort, value);
+			SetPort(ref fromEnd, value);
 		}
 	}
-	private Port toPort;
+	private Dock fromEnd;
+
+	public Dock To
+	{
+		get
+		{
+			return toEnd;
+		}
+		set
+		{
+			SetPort(ref toEnd, value);
+		}
+	}
+	private Dock toEnd;
 	
-	//Pipes don't move things unless both ports are real
+	//Pipes don't move things unless both ends are attached
 	public bool Paused
 	{
 		get
 		{
-			return From == null || !From.IsReal || To == null || !To.IsReal;
+            return From == null || To == null;
 		}
 	}
 
+    //Returns length in floor units
 	public float Length
 	{
 		get
@@ -47,34 +50,21 @@ public class Pipe {
 			{
 				return 0;
 			}
-			return Vector2.Distance (From.WorldPosition, To.WorldPosition);
+			return Vector2.Distance (From.FloorPosition, To.FloorPosition);
 		}
 	}
 
 	public int GrabberCount { get { return grabbers.Count; } } 
 
 	private List<Grabber> grabbers = new List<Grabber>();
-	private PipeDisplay display;
 
-	public void UpdateDisplay()
-	{
-		if(display == null)
-		{
-			display = Object.Instantiate(PrefabManager.PipeDisplay) as PipeDisplay;
-		}
-		display.Display(this);
-		foreach(Grabber g in grabbers)
-		{
-			g.UpdateDisplay();
-		}
-	}
+    public Pipe(Simulation sim)
+    {
+        Simulation = sim;
+    }
 
 	public void Destroy()
 	{
-		if(display != null)
-		{
-			GameObject.Destroy(display.gameObject);
-		}
 		From = null;
 		To = null;
 		foreach(Grabber g in grabbers)
@@ -85,47 +75,33 @@ public class Pipe {
 
 	public void AddGrabber()
 	{
-		Grabber newGrabber = new Grabber();
+		Grabber newGrabber = new Grabber(this, Simulation);
 		newGrabber.Pipe = this;
-		grabbers.Add (newGrabber);
-		UpdateDisplay();
+		grabbers.Add (newGrabber);;
 	}
 
-	public Vector3 GetNormalizedPoint(float u)
-	{
-		if(From == null || To == null)
-		{
-			Debug.LogError("Tried to get normalized point on detached pipe");
-			return Vector3.zero;
-		}
-		return Vector3.Lerp (From.WorldPosition, To.WorldPosition, u);
-	}
-
-	private void SetPort(ref Port myPortField, Port targetPort)
+	private void SetPort(ref Dock currentEnd, Dock newEnd)
 	{
 		List<Grabber> dockedGrabbersToTransfer = null;
-		if(myPortField != null)
+		if(currentEnd != null)
 		{
-			myPortField.Pipe = null;
-			dockedGrabbersToTransfer = new List<Grabber>(myPortField.DockedGrabbers);
+            currentEnd.Disconnect(this);
+			dockedGrabbersToTransfer = new List<Grabber>(currentEnd.DockedGrabbers);
 			foreach(Grabber g in dockedGrabbersToTransfer)
 			{
-				g.Undock(myPortField);
+				g.Undock(currentEnd);
 			}
 		}
-		myPortField = targetPort;
-		if(targetPort != null)
+        currentEnd = newEnd;
+		if(newEnd != null)
 		{
-			if(targetPort.Pipe != null)
-			{
-				Debug.LogError("Target port already occupied");
-			}
-			targetPort.Pipe = this;
+			
+            newEnd.Connect(this);
 			if(dockedGrabbersToTransfer != null)
 			{
 				foreach(Grabber g in dockedGrabbersToTransfer)
 				{
-					g.Dock (targetPort);
+					g.Dock (newEnd);
 				}
 			}
 		}

@@ -8,7 +8,7 @@ public class DestroyRule : IMachineRule {
 	public int NumInPorts{ get { return 1; } }
 	public int NumOutPorts{ get { return 0; } }
 
-	public void Process(Port port, Grabber grabber)
+	public void Process(Dock port, Grabber grabber)
 	{
 		grabber.Dispatch(null, port);
 	}
@@ -18,7 +18,7 @@ public class DestroyRule : IMachineRule {
 		return new DestroyRule();
 	}
 
-	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	public void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts)
 	{
 		inPorts[0].OnGrabberDocked += Process;
 	}

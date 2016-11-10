@@ -1,31 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MachinePort : Port {
+public class MachineDock : Dock {
 	
 	public Machine Machine { get; set; }
-	public override bool IsReal{get{return true;}}
 
-	private PortDisplay display;
+    public Vector2 Offset; //Tile-space offset from machine origin
 
-	public MachinePort(PortType type) : base(type){
+    public MachineDock(object source, DockType type) : base(source, type){
 		//just call superconstructor
 	}
 
-	public override Vector2 WorldPosition{
+	public override Vector2 FloorPosition{
 		get {
-			if(display)
-			{
-				return display.transform.position;
-			}
+            if(Machine.OnFloor)
+            {
+                return Machine.Origin.Value + Offset;
+            }
 			return Vector2.zero;
 		}
-	}
-
-	public void SetDisplay(PortDisplay display)
-	{
-		//TODO: Fix overwriting non null display
-		this.display = display;
-		display.Port = this;
 	}
 }

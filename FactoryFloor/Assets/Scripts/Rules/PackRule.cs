@@ -11,10 +11,10 @@ public class PackRule : IMachineRule {
 	public int NumInPorts{ get { return 2; } }
 	public int NumOutPorts{ get { return 1; } }
 
-	private Port inputA, inputB, output;
+	private Dock inputA, inputB, output;
 	private Crate outputOverflow;
 
-	private void OnGrabberDocked(Port port, Grabber grabber)
+	private void OnGrabberDocked(Dock port, Grabber grabber)
 	{
 		if(port == output && outputOverflow != null)
 		{
@@ -48,7 +48,7 @@ public class PackRule : IMachineRule {
 		return new PackRule();
 	}
 
-	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	public void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts)
 	{
 		inputA = inPorts[0];
 		inputB = inPorts[1];
@@ -56,7 +56,7 @@ public class PackRule : IMachineRule {
 		inputA.OnGrabberDocked += OnGrabberDocked;
 		inputB.OnGrabberDocked += OnGrabberDocked;
 		output.OnGrabberDocked += OnGrabberDocked;
-		inputA.Effect = PortEffect.First;
-		inputB.Effect = PortEffect.Last;
+		inputA.Effect = DockEffect.First;
+		inputB.Effect = DockEffect.Last;
 	}
 }

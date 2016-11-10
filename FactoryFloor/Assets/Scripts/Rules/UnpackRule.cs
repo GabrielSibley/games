@@ -11,9 +11,9 @@ public class UnpackRule : IMachineRule {
 	public int NumInPorts{ get { return 1; } }
 	public int NumOutPorts{ get { return 2; } }
 
-	private Port input, outputSingle, outputRemainder;
+	private Dock input, outputSingle, outputRemainder;
 	
-	private void OnGrabberDocked(Port port, Grabber grabber)
+	private void OnGrabberDocked(Dock port, Grabber grabber)
 	{
 		if(input.DockedGrabbers.Count > 0
 		   && outputSingle.DockedGrabbers.Count > 0
@@ -43,7 +43,7 @@ public class UnpackRule : IMachineRule {
 		return new UnpackRule();
 	}
 
-	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	public void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts)
 	{
 		input = inPorts[0];
 		outputSingle = outPorts[0];
@@ -51,7 +51,7 @@ public class UnpackRule : IMachineRule {
 		input.OnGrabberDocked += OnGrabberDocked;
 		outputSingle.OnGrabberDocked += OnGrabberDocked;
 		outputRemainder.OnGrabberDocked += OnGrabberDocked;
-		outputSingle.Effect = PortEffect.Last;
-		outputRemainder.Effect = PortEffect.First;
+		outputSingle.Effect = DockEffect.Last;
+		outputRemainder.Effect = DockEffect.First;
 	}
 }

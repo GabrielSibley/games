@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
 [PrefabManager()]
-public class MachineDisplay : MonoBehaviour, IDraggable {
+public class MachineDisplay : MonoBehaviour, IBeginDragHandler, IDragHandler {
 
-	Machine machine;
+    Machine machine;
 	List<MachinePartDisplay> machinePartDisplays = new List<MachinePartDisplay>();
-	List<PortDisplay> portDisplays = new List<PortDisplay>();
-	MachineRuleDisplay ruleDisplay;
+	List<DockDisplay> portDisplays = new List<DockDisplay>();
+	MachineRuleDisplay ruleDisplay;    
 
 	Vector2i? oldOrigin;
 
@@ -33,9 +34,14 @@ public class MachineDisplay : MonoBehaviour, IDraggable {
         }
         machine = mach;
 
+        if(machine == null)
+        {
+            return;
+        }
+
 		foreach(var part in mach.Parts)
 		{
-			var display = Object.Instantiate(PrefabManager.MachinePartDisplay) as MachinePartDisplay;
+			var display = Object.Instantiate(PrefabManager.MachinePartDisplay);
 			display.Part = part;
             display.transform.SetParent(transform);
             display.transform.localPosition = FloorView.FloorToWorldVector(part.Offset);
@@ -45,16 +51,16 @@ public class MachineDisplay : MonoBehaviour, IDraggable {
 			
 		foreach(var port in mach.Ports)
 		{
-			var display = Object.Instantiate(PrefabManager.PortDisplay) as PortDisplay;
-			port.SetDisplay (display);
-            display.transform.SetParent(transform);
-            display.transform.localPosition = (Vector3)FloorView.FloorToWorldVector(port.Offset) + new Vector3(0, 0, -25);
+			var display = Object.Instantiate(PrefabManager.DockDisplay);
+            display.Dock = port;
+            display.transform.SetParent(transform);            
+            display.transform.localPosition = (Vector3)FloorView.FloorToWorldVector(port.Offset) + new Vector3(0, 0, ZLayer.DockOffset);
 			portDisplays.Add (display);
 		}
 			
 		ruleDisplay = Object.Instantiate(MachineRuleDisplayUtil.GetDisplayPrefabForRule(mach.Rule)) as MachineRuleDisplay; //TODO: Kind of broken (?)
         ruleDisplay.transform.SetParent(transform);
-        ruleDisplay.transform.localPosition = (Vector3)FloorView.FloorToWorldVector(mach.Parts[0].Offset) + new Vector3(0, 0, -10);
+        ruleDisplay.transform.localPosition = (Vector3)FloorView.FloorToWorldVector(mach.Parts[0].Offset) + new Vector3(0, 0, ZLayer.RuleOffset);
 	}
 
     private void Cleanup()
@@ -72,6 +78,7 @@ public class MachineDisplay : MonoBehaviour, IDraggable {
         if (ruleDisplay)
         {
             Destroy(ruleDisplay.gameObject);
+            ruleDisplay = null;
         }
         machine = null;
     }
@@ -85,26 +92,20 @@ public class MachineDisplay : MonoBehaviour, IDraggable {
         Display(machine);
 	}
 
-	//Failed drag -- return to old position
-	public void OnDragEnd(Vector2 inPos)
-	{
-		if(!oldOrigin.HasValue)
-		{
-			throw new System.Exception("Dropped machine with no old origin -- what now?");
-		}
-		machine.AddToFloor(oldOrigin.Value);
-		CollisionEnabled = true;
-		if(GameMode.Current == GameMode.Mode.MoveMachine)
-		{
-			GameMode.Current = GameMode.Mode.SelectMachine;
-		}
-	}
-
-	public void OnDragged(Vector2 inPos)
-	{
-        transform.position = inPos;
-	}
-
+    //Failed drag -- return to old position
+    public void OnDragEnd(Vector2 inPos)
+    {
+        if (!oldOrigin.HasValue)
+        {
+            throw new System.Exception("Dropped machine with no old origin -- what now?");
+        }
+        machine.AddToFloor(oldOrigin.Value);
+        CollisionEnabled = true;
+        if (GameMode.Current == GameMode.Mode.MoveMachine)
+        {
+            GameMode.Current = GameMode.Mode.SelectMachine;
+        }
+    }
 
 	public void Display(Machine machine)
 	{
@@ -116,7 +117,7 @@ public class MachineDisplay : MonoBehaviour, IDraggable {
 		{
 			part.Display();
 		}
-		foreach(PortDisplay port in portDisplays)
+		foreach(DockDisplay port in portDisplays)
 		{
 			port.Display();
 		}
@@ -124,4 +125,14 @@ public class MachineDisplay : MonoBehaviour, IDraggable {
 			ruleDisplay.Display(machine);
 		}
 	}
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        SimulationView.Instance.CarriedMachine = machine;        
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        //do nothing
+    }
 }

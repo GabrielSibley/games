@@ -8,5 +8,5 @@ public interface IMachineRule {
 	int NumInPorts{ get; }
 	int NumOutPorts{ get; }
 	IMachineRule FreshCopy(); //Return a copy of the rule with no process state information
-	void BindPorts(IList<Port> inPorts, IList<Port> outPorts);
+	void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts);
 }

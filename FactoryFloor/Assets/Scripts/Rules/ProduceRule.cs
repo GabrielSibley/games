@@ -18,7 +18,7 @@ public class ProduceRule : IMachineRule {
 		Production = produces;
 	}
 
-	private void Process(Port port, Grabber grabber)
+	private void Process(Dock port, Grabber grabber)
 	{
 		grabber.Dispatch(new Crate(Production), port);
 	}
@@ -28,7 +28,7 @@ public class ProduceRule : IMachineRule {
 		return new ProduceRule(new Crate(Production));
 	}
 
-	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	public void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts)
 	{
 		outPorts[0].OnGrabberDocked += Process;
 	}

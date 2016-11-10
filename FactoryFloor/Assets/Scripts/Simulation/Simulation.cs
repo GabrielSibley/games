@@ -9,6 +9,8 @@ public class Simulation {
 
 	public Floor Floor {get; private set;}
 
+    private HashSet<IUpdatable> updatables = new HashSet<IUpdatable>();
+
 	const int machineShopSizeLimit = 24;
 	MachineFactory machineFactory;
 	public List<Machine> MachineShop = new List<Machine>(machineShopSizeLimit);
@@ -25,11 +27,21 @@ public class Simulation {
 		}
 	}
 
-	public void Update(float deltaTime)
+    public void Tick(IUpdatable obj)
+    {
+        updatables.Add(obj);
+    }
+
+    public void Untick(IUpdatable obj)
+    {
+        updatables.Remove(obj);
+    }
+
+    public void Update(float deltaTime)
 	{
-		foreach(Machine machine in Floor.Machines)
+		foreach(IUpdatable updatable in updatables)
 		{
-			machine.Update(deltaTime);
+            updatable.Update(deltaTime);
 		}
 	}
 

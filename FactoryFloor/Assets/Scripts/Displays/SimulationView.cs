@@ -11,7 +11,14 @@ public class SimulationView : MonoBehaviour {
         get { return carriedMachine; }
         set
         {
-            carriedMachine = value;
+            carriedMachine = value;            
+
+            if(carriedMachine != null && carriedMachine.OnFloor)
+            {
+                //TODO: remember crane links here
+                carriedMachine.RemoveFromFloor();                
+            }
+
             carriedMachineDisplay.Display(value);
         }
     }
@@ -21,19 +28,23 @@ public class SimulationView : MonoBehaviour {
 	public MachineShopView shopView;
     public CarriedMachineDisplay carriedMachineDisplay;
     public MachineDisplay machineFloorDisplayPrefab;
+    public PipeEditManager pipeEditor;
 
     private List<MachineDisplay> machineFloorDisplayPool = new List<MachineDisplay>();
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 	public void Display(Simulation sim)
 	{
-        Instance = this;
+        pipeEditor.Simulation = sim;
         inputManager.ProcessInput();
 		shopView.Display(sim.MachineShop);
         carriedMachineDisplay.Display(CarriedMachine);
 
         DisplayFloorMachines(sim);        
-
-        Instance = null;
 	}
 
     //Updates display of machines on the sim floor
@@ -50,7 +61,7 @@ public class SimulationView : MonoBehaviour {
             MachineDisplay display = machineFloorDisplayPool[poolIndex];
             display.Display(machine);
             Vector3 displayPosition = FloorView.FloorToWorldPoint(machine.Origin.Value, FloorViewSpace.TileCenter);
-            displayPosition.z = ZLayer.FloorMachine;
+            displayPosition.z = ZLayer.Machine;
             display.transform.position = displayPosition;
 
             poolIndex++;

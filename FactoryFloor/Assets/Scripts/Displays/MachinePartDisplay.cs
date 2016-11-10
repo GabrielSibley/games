@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System;
 
 [PrefabManager]
-public class MachinePartDisplay : MonoBehaviour, IInputReceiver {
+public class MachinePartDisplay : MonoBehaviour {
 
 	public MachinePart Part;
 	public Machine Machine { get { return Part.Machine; } }

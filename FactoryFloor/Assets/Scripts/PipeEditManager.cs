@@ -1,97 +1,153 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class PipeEditManager : MonoBehaviour, IInputListener {
 
+    public Simulation Simulation;
+
 	public float maxSnapDistance = 128;
 
-	private Pipe editedPipe;
+	private PipeDisplay editedPipe;
+    private HashSet<IPipeDisplayAnchor> pipeAnchors = new HashSet<IPipeDisplayAnchor>();
+    private HashSet<PipeDisplay> pipeDisplays = new HashSet<PipeDisplay>();
 
-	private void Awake()
-	{
-		InputManager.InputListeners.Add(this);
-	}
+    private void Awake()
+    {
+        InputManager.InputListeners.Add(this);
+        DockDisplay.DockDisplayChanged += OnDockAnchorChange;
+    }
 
-	private void OnDestroy()
+
+    private void OnDestroy()
 	{
 		InputManager.InputListeners.Remove (this);
-	}
+        DockDisplay.DockDisplayChanged -= OnDockAnchorChange;
+    }
+
+    private void OnDockAnchorChange(IPipeDisplayAnchor anchor, bool visible)
+    {
+        if(visible)
+        {
+            pipeAnchors.Add(anchor);
+        }
+        else
+        {            
+            pipeAnchors.Remove(anchor);
+            if (editedPipe != null && (editedPipe.From == anchor || editedPipe.To == anchor))
+            {
+                CancelPipeSetup();
+            }
+        }
+    }
 
 	private void Update()
 	{
 		if(editedPipe != null)
 		{
-			editedPipe.UpdateDisplay();
+			editedPipe.Display();
 		}
 	}
 
-	public bool OnInputDown()
+    public IPipeDisplayAnchor GetAnchorForDock(Dock dock)
+    {
+        //TODO: Make not O(N)
+        foreach(var anchor in pipeAnchors)
+        {
+            if(anchor.Dock == dock)
+            {
+                return anchor;
+            }
+        }
+        return null;
+    }
+
+
+    public bool OnInputDown()
 	{
+        if(Simulation == null)
+        {
+            return false;
+        }
 		if(GameMode.Current == GameMode.Mode.SelectPipe)
 		{
 			//If no pipe being edited
 			if(editedPipe == null)
 			{
-				//Get closest machine port
-				MachinePort closestPort = GetClosestMachinePortToCursorWithQuality(x => true);
-				if(closestPort != null)
+                //Get closest port
+                IPipeDisplayAnchor targetAnchor = GetClosestAnchorToCursorWithQuality(x => true);
+				if(targetAnchor != null)
 				{
-					if(closestPort.Pipe != null)
+					if(targetAnchor.Dock.Pipe != null)
 					{
 						//Edit existing pipe
-						editedPipe = closestPort.Pipe;
-						if(closestPort == editedPipe.From)
-						{
-							editedPipe.From = new MouseFollowingPort(PortType.Out);
-						}
-						else
-						{
-							editedPipe.To = new MouseFollowingPort(PortType.In);
-						}
+                        foreach(PipeDisplay pipeDisplay in pipeDisplays)
+                        {                            
+                            if(pipeDisplay.Pipe.From == targetAnchor.Dock)
+                            {
+                                editedPipe = pipeDisplay;
+                                editedPipe.FromOverride = new DraggedPipeAnchor();
+                                editedPipe.Pipe.From = null;
+                                break;
+                            }
+                            if(pipeDisplay.Pipe.To == targetAnchor.Dock)
+                            {
+                                editedPipe = pipeDisplay;
+                                editedPipe.ToOverride = new DraggedPipeAnchor();
+                                editedPipe.Pipe.To = null;
+                                break;
+                            }
+                        }
 					}
 					else
 					{
-						//Create new pipe (from/to) that port to mousefollowport
-						editedPipe = new Pipe();
-						if(closestPort.Type == PortType.In)
+                        //Create new pipe (from/to) that port to input point
+                        Pipe pipe = new Pipe(Simulation);
+                        editedPipe = Instantiate(PrefabManager.PipeDisplay);
+                        pipeDisplays.Add(editedPipe);
+                        editedPipe.Pipe = pipe;
+						if(targetAnchor.Dock.Type == DockType.In)
 						{
-							editedPipe.From = new MouseFollowingPort(PortType.Out);
-							editedPipe.To = closestPort;
+							editedPipe.FromOverride = new DraggedPipeAnchor();							
+                            pipe.To = targetAnchor.Dock;
 						}
 						else
 						{
-							editedPipe.From = closestPort;
-							editedPipe.To = new MouseFollowingPort(PortType.In);
+                            pipe.From = targetAnchor.Dock;                            
+							editedPipe.ToOverride = new DraggedPipeAnchor();
 						}
-					}
-					editedPipe.UpdateDisplay();
+                    }
+					editedPipe.Display();
 				}
 			}
 			else
 			{
-				//get closest machine port of opposite type
-				MachinePort realPort = (editedPipe.From as MachinePort ?? editedPipe.To as MachinePort);
-				MachinePort closestPort = GetClosestMachinePortToCursorWithQuality(x => x.Pipe == null && x.Type != realPort.Type);
-				//if pipe is not connecting machine to itself
-				if(closestPort != null
-				   && closestPort.Machine != realPort.Machine
-				)
+				//get closest dock of opposite type from still-attached dock
+				Dock attachedDock = (editedPipe.Pipe.From ?? editedPipe.Pipe.To);
+                IPipeDisplayAnchor targetDisplay = GetClosestAnchorToCursorWithQuality(x => x.Dock.Pipe == null && x.Dock.Type != attachedDock.Type);                
+				//if pipe is not connecting source to itself
+				if(targetDisplay != null
+				   && targetDisplay.Dock.Source != attachedDock.Source
+                )
 				{
-					//setup pipe
-					if(realPort == editedPipe.From)
+                    Dock targetDock = targetDisplay.Dock;
+                    //setup pipe
+                    if (attachedDock == editedPipe.Pipe.From)
 					{
-						editedPipe.To = closestPort;
+						editedPipe.Pipe.To = targetDock;
+                        editedPipe.ToOverride = null;
 					}
 					else
 					{
-						editedPipe.From = closestPort;
+						editedPipe.Pipe.From = targetDock;
+                        editedPipe.FromOverride = null;
 					}
-					if(editedPipe.GrabberCount == 0)
+					if(editedPipe.Pipe.GrabberCount == 0)
 					{
-						editedPipe.AddGrabber();
+						editedPipe.Pipe.AddGrabber();
 					}
-					editedPipe.UpdateDisplay();
+					editedPipe.Display();
 					editedPipe = null;
 				}
 				else
@@ -106,32 +162,31 @@ public class PipeEditManager : MonoBehaviour, IInputListener {
 
 	private void CancelPipeSetup()
 	{
-		editedPipe.Destroy();
-		editedPipe = null;
+        if(editedPipe != null)
+        {
+            pipeDisplays.Remove(editedPipe);         
+            editedPipe.Pipe.Destroy();
+            Destroy(editedPipe.gameObject);
+            editedPipe = null;
+        }
 	}
 
-	private MachinePort GetClosestMachinePortToCursorWithQuality(Predicate<MachinePort> condition)
+	private IPipeDisplayAnchor GetClosestAnchorToCursorWithQuality(Predicate<IPipeDisplayAnchor> condition)
 	{
-		throw new System.Exception("here be dragons");
-		/*
-		MachinePort closestPort = null;
+        IPipeDisplayAnchor resultAnchor = null;
 		float minDist = maxSnapDistance;
-		foreach(Machine mach in Machine.PlacedMachines)
+		foreach(IPipeDisplayAnchor anchor in pipeAnchors)
 		{
-			foreach(MachinePort port in mach.Ports)
+			if(condition(anchor))
 			{
-				if(condition(port))
+				float dist = Vector2.Distance (anchor.WorldPos, InputManager.InputWorldPos);
+				if(dist < minDist)
 				{
-					float dist = Vector2.Distance (port.WorldPosition, InputManager.InputWorldPos);
-					if(dist < minDist)
-					{
-						minDist = dist;
-						closestPort = port;
-					}
+					minDist = dist;
+					resultAnchor = anchor;
 				}
 			}
 		}
-		return closestPort;
-		*/
+		return resultAnchor;
 	}
 }

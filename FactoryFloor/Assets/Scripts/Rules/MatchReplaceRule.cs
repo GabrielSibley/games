@@ -59,7 +59,7 @@ public class MatchReplaceRule : IMachineRule {
 	public int NumInPorts{ get { return 1; } }
 	public int NumOutPorts{ get { return 1; } }
 
-	private Port inPort, outPort;
+	private Dock inPort, outPort;
 
 	public MatchReplaceRule()
 	{
@@ -72,7 +72,7 @@ public class MatchReplaceRule : IMachineRule {
 	}
 
 	//Todo: This could explode if grabber can round-trip in one time step
-	public void Process(Port port, Grabber grabber)
+	public void Process(Dock port, Grabber grabber)
 	{
 		if(inPort.DockedGrabbers.Count > 0 && outPort.DockedGrabbers.Count > 0)
 		{
@@ -115,7 +115,7 @@ public class MatchReplaceRule : IMachineRule {
 		}
 	}
 
-	public void BindPorts(IList<Port> inPorts, IList<Port> outPorts)
+	public void BindPorts(IList<Dock> inPorts, IList<Dock> outPorts)
 	{
 		inPort = inPorts[0];
 		outPort = outPorts[0];

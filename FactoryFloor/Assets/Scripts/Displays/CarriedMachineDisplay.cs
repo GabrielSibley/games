@@ -26,7 +26,7 @@ public class CarriedMachineDisplay : MonoBehaviour {
         }
 
         Vector3 pos = InputManager.InputWorldPos;
-        pos.z = ZLayer.CarriedMachine;
+        pos.z = ZLayer.Machine + ZLayer.CarriedOffset;
         transform.position = pos;
         if(transform.position.x >= swapX)
         {
@@ -36,7 +36,7 @@ public class CarriedMachineDisplay : MonoBehaviour {
             {
                 //snap display to that space
                 Vector3 snapPos = FloorView.FloorToWorldPoint(targetOrigin, FloorViewSpace.TileCenter);
-                snapPos.z = ZLayer.CarriedMachine;
+                snapPos.z = ZLayer.Machine + ZLayer.CarriedOffset;
                 transform.position = snapPos;
 
 

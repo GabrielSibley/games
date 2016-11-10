@@ -3,23 +3,25 @@ using System.Collections;
 
 public class Grabber: IUpdatable {
 
+    private Simulation Simulation;
+
 	public Pipe Pipe;
 	public float MinSpeed = 0.01f;
-	public float Acceleration = 1200;
+	public float Acceleration = 16;
 	public float NormalizedDistance;
 	public Crate HeldCrate;
 
-	public bool Docked { get { return dockedToPort != null; } }
-	public Port DockedToPort{ get { return dockedToPort; } }
-
-	private Port dockedToPort;
+	public bool Docked { get { return DockedAt != null; } }
+	public Dock DockedAt { get; set; }
 	private bool reverse = true;
-	private GrabberDisplay display;
 	private float normalizedMovementAllowance;
 
-	public Grabber(){
-		Ticker.Instance.Add (this);
-	}
+    public Grabber(Pipe pipe, Simulation sim)
+    {
+        Simulation = sim;
+        Simulation.Tick(this);
+        Pipe = pipe;
+    }
 
 	public void Update(float deltaTime)
 	{
@@ -34,7 +36,6 @@ public class Grabber: IUpdatable {
 				Move();
 			}
 		}
-		UpdateDisplay();
 	}
 
 	public void Move()
@@ -74,26 +75,16 @@ public class Grabber: IUpdatable {
 			distMoved = Mathf.Abs (speed);
 			normalizedMovementAllowance -= distMoved;
 		}
-		UpdateDisplay();
 	}
 
-	public void UpdateDisplay()
+	public void Dock(Dock dock)
 	{
-		if(!display)
-		{
-			display = Object.Instantiate(PrefabManager.GrabberDisplay) as GrabberDisplay;
-		}
-		display.Display(this);
-	}
-
-	public void Dock(Port port)
-	{
-		dockedToPort = port;
-		if(port == Pipe.To)
+		DockedAt = dock;
+		if(dock == Pipe.To)
 		{
 			NormalizedDistance = 1;
 		}
-		else if(port == Pipe.From)
+		else if(dock == Pipe.From)
 		{
 			NormalizedDistance = 0;
 		}
@@ -101,21 +92,21 @@ public class Grabber: IUpdatable {
 		{
 			Debug.LogError ("Grabber docked to port not on its pipe");
 		}
-		port.DockGrabber(this);
+        dock.DockGrabber(this);
 	}
 
-	public void Undock(Port port)
+	public void Undock(Dock dock)
 	{
-		if(dockedToPort != port)
+		if(DockedAt != dock)
 		{
 			Debug.LogError ("Undock from mismatched port");
 		}
-		dockedToPort = null;
-		port.UndockGrabber(this);
+        DockedAt = null;
+        dock.UndockGrabber(this);
 	}
 	
 	//Undocks, sets crate, and triggers movement update
-	public void Dispatch(Crate crate, Port port)
+	public void Dispatch(Crate crate, Dock port)
 	{
 		HeldCrate = crate;
 		Undock(port);
@@ -123,12 +114,8 @@ public class Grabber: IUpdatable {
 		Move();
 	}
 
-	public void Destroy()
-	{
-		Ticker.Instance.Remove (this);
-		if(display)
-		{
-			GameObject.Destroy (display.gameObject);
-		}
-	}
+    public void Destroy()
+    {
+        Simulation.Untick(this);
+    }
 }

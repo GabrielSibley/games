@@ -5,6 +5,8 @@ public class PrefabManager : MonoBehaviour {
 	private void Awake(){ instance = this; }
 	public static DeliveryContractDisplay DeliveryContractDisplay { get { return instance._DeliveryContractDisplay; } }
 	[SerializeField] private DeliveryContractDisplay _DeliveryContractDisplay;
+	public static DockDisplay DockDisplay { get { return instance._DockDisplay; } }
+	[SerializeField] private DockDisplay _DockDisplay;
 	public static FourFeatureDisplay FourFeatureDisplay { get { return instance._FourFeatureDisplay; } }
 	[SerializeField] private FourFeatureDisplay _FourFeatureDisplay;
 	public static GrabberDisplay GrabberDisplay { get { return instance._GrabberDisplay; } }
@@ -15,8 +17,6 @@ public class PrefabManager : MonoBehaviour {
 	[SerializeField] private MachinePartDisplay _MachinePartDisplay;
 	public static PipeDisplay PipeDisplay { get { return instance._PipeDisplay; } }
 	[SerializeField] private PipeDisplay _PipeDisplay;
-	public static PortDisplay PortDisplay { get { return instance._PortDisplay; } }
-	[SerializeField] private PortDisplay _PortDisplay;
 	public static DestroyExactlyRuleDisplay DestroyExactlyRuleDisplay { get { return instance._DestroyExactlyRuleDisplay; } }
 	[SerializeField] private DestroyExactlyRuleDisplay _DestroyExactlyRuleDisplay;
 	public static DestroyRuleDisplay DestroyRuleDisplay { get { return instance._DestroyRuleDisplay; } }
