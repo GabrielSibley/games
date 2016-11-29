@@ -56,7 +56,7 @@ public class Pipe {
 
 	public int GrabberCount { get { return grabbers.Count; } } 
 
-	private List<Grabber> grabbers = new List<Grabber>();
+	public List<Grabber> grabbers = new List<Grabber>();
 
     public Pipe(Simulation sim)
     {

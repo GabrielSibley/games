@@ -8,6 +8,8 @@ public class PipeDisplay : MonoBehaviour {
     public const float TextureAR = 5;
     public Pipe Pipe;
 
+    public GrabberDisplay GrabberDisplay;
+
     public IPipeDisplayAnchor From { get { return FromOverride != null ? FromOverride : SimulationView.Instance.pipeEditor.GetAnchorForDock(Pipe.From); } }
     public IPipeDisplayAnchor To { get { return ToOverride != null ? ToOverride : SimulationView.Instance.pipeEditor.GetAnchorForDock(Pipe.To); } }
 
@@ -35,6 +37,17 @@ public class PipeDisplay : MonoBehaviour {
 		{
 			GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
 		}
+
+        if (Pipe.GrabberCount > 0)
+        {
+            if (GrabberDisplay == null)
+            {
+                GrabberDisplay = Instantiate(PrefabManager.GrabberDisplay);
+            }        
+            GrabberDisplay.Grabber = Pipe.grabbers[0];
+            GrabberDisplay.PipeDisplay = this;
+            GrabberDisplay.Display();
+        }
 	}
 
     public Vector3 GetNormalizedPoint(float u)
@@ -49,4 +62,12 @@ public class PipeDisplay : MonoBehaviour {
 		GetComponent<Renderer>().material.mainTextureOffset = offset;
         Display();
 	}
+
+    void OnDestroy()
+    {
+        if(GrabberDisplay != null)
+        {
+            Destroy(GrabberDisplay.gameObject);
+        }
+    }
 }

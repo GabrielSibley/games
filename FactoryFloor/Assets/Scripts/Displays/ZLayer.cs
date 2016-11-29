@@ -3,6 +3,7 @@ using System.Collections;
 
 public static class ZLayer {
     public const float Machine = -50;
+    public const float Contract = -50;
     public const float RuleOffset = -10;
     public const float DockOffset = -25; //Docks offset from machine
 

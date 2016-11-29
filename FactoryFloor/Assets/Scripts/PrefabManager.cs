@@ -3,8 +3,8 @@ using UnityEngine;
 public class PrefabManager : MonoBehaviour {
 	private static PrefabManager instance;
 	private void Awake(){ instance = this; }
-	public static DeliveryContractDisplay DeliveryContractDisplay { get { return instance._DeliveryContractDisplay; } }
-	[SerializeField] private DeliveryContractDisplay _DeliveryContractDisplay;
+	public static ContractDisplay ContractDisplay { get { return instance._ContractDisplay; } }
+	[SerializeField] private ContractDisplay _ContractDisplay;
 	public static DockDisplay DockDisplay { get { return instance._DockDisplay; } }
 	[SerializeField] private DockDisplay _DockDisplay;
 	public static FourFeatureDisplay FourFeatureDisplay { get { return instance._FourFeatureDisplay; } }
@@ -29,6 +29,4 @@ public class PrefabManager : MonoBehaviour {
 	[SerializeField] private ProduceRuleDisplay _ProduceRuleDisplay;
 	public static UnpackRuleDisplay UnpackRuleDisplay { get { return instance._UnpackRuleDisplay; } }
 	[SerializeField] private UnpackRuleDisplay _UnpackRuleDisplay;
-	public static SupplyContractDisplay SupplyContractDisplay { get { return instance._SupplyContractDisplay; } }
-	[SerializeField] private SupplyContractDisplay _SupplyContractDisplay;
 }

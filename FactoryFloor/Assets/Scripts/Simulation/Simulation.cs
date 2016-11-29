@@ -14,17 +14,51 @@ public class Simulation {
 	const int machineShopSizeLimit = 24;
 	MachineFactory machineFactory;
 	public List<Machine> MachineShop = new List<Machine>(machineShopSizeLimit);
+    const int contractShopSizeLimit = 9;
+    const int contractSlotLimit = 8;
+    ContractFactory supplyContractFactory, deliveryContractFactory;
+    public List<Contract> SupplyShop = new List<Contract>(contractShopSizeLimit);
+    public List<Contract> DeliveryShop = new List<Contract>(contractShopSizeLimit);
+    public List<ContractSlot> ContractSlots = new List<ContractSlot>(contractSlotLimit);
 
-	public Simulation()
+    public Simulation()
 	{
 		Floor = new Floor(this, floorWidth, floorHeight);
 		machineFactory = new MachineFactory(this);
+        supplyContractFactory = new ContractFactory(false);
+        deliveryContractFactory = new ContractFactory(true);
 
 		//Populate machine shop
 		for(int i = 0; i < machineShopSizeLimit; i++)
 		{
 			MachineShop.Add (machineFactory.GetMachineForShop());
 		}
+
+        //Populate contracts
+        for(int i = 0; i < contractShopSizeLimit; i++)
+        {
+            SupplyShop.Add(supplyContractFactory.GetContractForShop());
+            DeliveryShop.Add(deliveryContractFactory.GetContractForShop());
+        }
+
+        //Create contract slots
+        Vector2[] slotPositions = new Vector2[]
+        {
+            new Vector2(1, -0.666f),
+            new Vector2(3, -0.666f),
+            new Vector2(5, -0.666f),
+            new Vector2(7, -0.666f),
+            new Vector2(1, 8.666f),
+            new Vector2(3, 8.666f),
+            new Vector2(5, 8.666f),
+            new Vector2(7, 8.666f)
+        };
+        for (int i = 0; i < contractSlotLimit; i++)
+        {
+            ContractSlot slot = new ContractSlot();
+            slot.FloorPosition = slotPositions[i];
+            ContractSlots.Add(slot);
+        }
 	}
 
     public void Tick(IUpdatable obj)
