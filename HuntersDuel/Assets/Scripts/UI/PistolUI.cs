@@ -12,8 +12,8 @@ public class PistolUI : MonoBehaviour {
 	private Color liveBulletColor, deadBulletColor;
 
 	public void SetColors(PlayerUI colorSource){
-		cylinder.renderer.material.color = colorSource.BrightPlayerColor;
-		frame.renderer.material.color = colorSource.DarkPlayerColor;
+		cylinder.GetComponent<Renderer>().material.color = colorSource.BrightPlayerColor;
+		frame.GetComponent<Renderer>().material.color = colorSource.DarkPlayerColor;
 		liveBulletColor = colorSource.LiveBulletColor;
 		deadBulletColor = colorSource.DeadBulletColor;
 	}
@@ -28,7 +28,7 @@ public class PistolUI : MonoBehaviour {
 			}
 			else{
 				bullets[i].SetActive(true);
-				bullets[i].renderer.material.color = chamberState == BulletState.Fired ? deadBulletColor : liveBulletColor;
+				bullets[i].GetComponent<Renderer>().material.color = chamberState == BulletState.Fired ? deadBulletColor : liveBulletColor;
 			}
 		}
 	}

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!header
+SerializedFile:
+  m_TargetPlatform: 4294967294
+  m_UserInformation: 
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400002}
+  m_Layer: 0
+  m_Name: SMG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1002 &100001
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}
+  m_LocalPosition: {x: 7.009763, y: 7.550013, z: 10.977457}
+  m_LocalScale: {x: 1.000000, y: 1.000000, z: 1.000000}
+  m_LocalEulerAnglesHint: {x: 0.000000, y: 0.000000, z: 0.000000}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!1002 &400001
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcab3bebb3db9c4fb7a186310786272, type: 1}
+  m_Name: 
+  icon: {fileID: 2800000, guid: 9459ca02c3573ad4e992efe374a7e2ae, type: 1}
+  slots: 4
+  displayName: SMG
+  damage: 2
+  unaimedDeviation: 5.000000
+  oneHandedDeviationModifier: 3.000000
+  maxAimPower: 6.000000
+  powerGain: 9.000000
+  maxPowerHalfRange: 4.000000
+  powerGainHalfRange: 5.000000
+  fireTime: 0.100000
+  isSemiAuto: 1
+  chamberTime: 0.500000
+  reloadTime: 0.600000
+  noise: 16.000000
+  ammoType: 1
+  magazine: {fileID: 0}
+  isChambered: 0
+  numAttacks: 1
+  sfx:
+  - {fileID: 8300000, guid: df867fcab583b4c42b7bb4b07d4e8ce3, type: 1}
+  - {fileID: 8300000, guid: 2b6de8ce5943cae4696642ae5f23ee21, type: 1}
+  - {fileID: 8300000, guid: 741577c941fc2674c968820ce9b4854f, type: 1}
+  - {fileID: 8300000, guid: 73889397cbbe4e84481d7a220f023f15, type: 1}
+  - {fileID: 8300000, guid: 850cc2449a96a5548a06798be54a79ea, type: 1}
+--- !u!1002 &11400003
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
+--- !u!1002 &100100001
+EditorExtensionImpl:
+  serializedVersion: 6

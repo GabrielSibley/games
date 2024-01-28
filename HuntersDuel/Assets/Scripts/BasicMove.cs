@@ -41,7 +41,7 @@ public class BasicMove : MonoBehaviour {
 	}
 
 	void Update () {
-		rigidbody.velocity = Vector3.zero;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		IsAiming = false;		
 		
 		if(m_isAlive && Winnput.A[m_player] && !(Winnput.B[m_player] && Winnput.ADown[m_player])){
@@ -87,19 +87,19 @@ public class BasicMove : MonoBehaviour {
 		if(m_isAlive && (!(Winnput.A[m_player] || Winnput.B[m_player]))){
 			//Movement
 			if(Winnput.Up[m_player]){
-				rigidbody.velocity += new Vector3(0, gun.WalkSpeed, 0);
+				GetComponent<Rigidbody>().velocity += new Vector3(0, gun.WalkSpeed, 0);
 				m_aimAngle = 90;
 			}
 			else if(Winnput.Down[m_player]){
-				rigidbody.velocity += new Vector3(0, -gun.WalkSpeed, 0);
+				GetComponent<Rigidbody>().velocity += new Vector3(0, -gun.WalkSpeed, 0);
 				m_aimAngle = 270;
 			}
 			else if(Winnput.Right[m_player]){
-				rigidbody.velocity += new Vector3(gun.WalkSpeed, 0 , 0);
+				GetComponent<Rigidbody>().velocity += new Vector3(gun.WalkSpeed, 0 , 0);
 				m_aimAngle = 0;
 			}
 			else if(Winnput.Left[m_player]){
-				rigidbody.velocity += new Vector3(-gun.WalkSpeed, 0 , 0);
+				GetComponent<Rigidbody>().velocity += new Vector3(-gun.WalkSpeed, 0 , 0);
 				m_aimAngle = 180;
 			}
 		}

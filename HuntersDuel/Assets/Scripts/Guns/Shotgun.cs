@@ -17,6 +17,7 @@ public class Shotgun : Gun {
 	public float m_pelletSpread; //In degrees
 	
 	public AudioClip m_gunsfx;
+    public AudioClip loadBulletSfx;
 	public float walkSpeed;
 	
 	//public int m_ammoReserve = 5;
@@ -92,6 +93,7 @@ public class Shotgun : Gun {
 	}
 	
 	void AddLiveRound(){
+        AudioManager.PlaySFX(loadBulletSfx);
 		for(int i = m_magazine.Length-1; i > 0; i--){
 			m_magazine[i] = m_magazine[i-1];
 		}

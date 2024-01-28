@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	
 	IEnumerator _PlayerDied(){
 		yield return new WaitForSeconds(4);
-		Application.LoadLevel("title");
+		SceneManager.LoadScene("title");
 	}
 	
 	void Update(){

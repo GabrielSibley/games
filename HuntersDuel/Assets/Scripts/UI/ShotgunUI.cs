@@ -13,15 +13,15 @@ public class ShotgunUI : MonoBehaviour {
 	private Color liveBulletColor, deadBulletColor;
 
 	public void SetColors(PlayerUI colorSource){
-		frame.renderer.material.color = colorSource.DarkPlayerColor;
-		slideBack.renderer.material.color = colorSource.BrightPlayerColor;
-		slideForward.renderer.material.color = colorSource.BrightPlayerColor;
+		frame.GetComponent<Renderer>().material.color = colorSource.DarkPlayerColor;
+		slideBack.GetComponent<Renderer>().material.color = colorSource.BrightPlayerColor;
+		slideForward.GetComponent<Renderer>().material.color = colorSource.BrightPlayerColor;
 		liveBulletColor = colorSource.LiveBulletColor;
 		deadBulletColor = colorSource.DeadBulletColor;
 		for(int i = 0; i < shells.Length; i++){
-			shells[i].renderer.material.color = colorSource.LiveBulletColor;
+			shells[i].GetComponent<Renderer>().material.color = colorSource.LiveBulletColor;
 		}
-		partialLoadShell.renderer.material.color = colorSource.LiveBulletColor;
+		partialLoadShell.GetComponent<Renderer>().material.color = colorSource.LiveBulletColor;
 	}
 
 	public void Display(SlideState state, BulletState[] magazine, BulletState chamber, bool partialLoad){
@@ -36,14 +36,14 @@ public class ShotgunUI : MonoBehaviour {
 		}
 		else{
 			chamberedForward.SetActive (true);
-			chamberedForward.renderer.material.color = chamber == BulletState.Fired ? deadBulletColor : liveBulletColor;
+			chamberedForward.GetComponent<Renderer>().material.color = chamber == BulletState.Fired ? deadBulletColor : liveBulletColor;
 		}
 		if(chamber == BulletState.Empty || state == SlideState.Forward){
 			chamberedBack.SetActive(false);
 		}
 		else{
 			chamberedBack.SetActive (true);
-			chamberedBack.renderer.material.color = chamber == BulletState.Fired ? deadBulletColor : liveBulletColor;
+			chamberedBack.GetComponent<Renderer>().material.color = chamber == BulletState.Fired ? deadBulletColor : liveBulletColor;
 		}
 		partialLoadShell.SetActive(partialLoad);
 	}

@@ -1,0 +1,68 @@
+[Global]
+CurrentProject=Assembly-CSharp.vpj
+[ActiveConfig]
+Assembly-CSharp.vpj=,Debug|AnyCPU
+[ProjectDates]
+Assembly-CSharp.csproj=20120620231036403
+[TreeExpansion2]
+-@ Assembly-CSharp.csproj
+  - Assets
+    - Scripts
+      + Action Scripts
+      + AI States
+      + Effects
+      + Entities
+      + Input
+      + Items
+        + Ammo
+        + Weapons
+      - Map
+      + Utility
+scroll:0
+[State]
+SCREEN: 1280 1024 91 70 1101 847 0 0 M 0 0 0 0 954 686 0
+CWD: ..\Stealth
+BUFFER: BN="Assets\Scripts\Map\LevelInitializer.cs"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C#	HM=0 MF=33554432 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.435 CL=28 LE=0 CX=28 CY=15 WI=5 BI=11 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Assets\Scripts\Entities\Player.cs"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C#	HM=0 MF=35651680 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.673 CL=1 LE=0 CX=1 CY=18 WI=5 BI=10 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Assets\Scripts\Map\RoomGroup.cs"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C#	HM=0 MF=51380832 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.105 CL=5 LE=0 CX=5 CY=5 WI=5 BI=15 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Assets\Scripts\Map\Room.cs"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C#	HM=0 MF=53477984 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.80 CL=1 LE=0 CX=1 CY=4 WI=5 BI=13 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Assets\Scripts\Map\Tile.cs"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C#	HM=0 MF=51380832 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.613 CL=39 LE=0 CX=39 CY=8 WI=5 BI=12 HT=0 HN=0 HF=0 HC=4
+BUFFER: BN="Assets\Scripts\Map\Map.cs"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C#	HM=0 MF=51380832 TL=0 MLL=0 ASE=0 LNL=1 LCF=6 CAPS=0 E=0 ESBU2=1 CL="" SC="" SCE= SCU=
+VIEW: LN=.9603 CL=77 LE=0 CX=77 CY=23 WI=5 BI=14 HT=0 HN=0 HF=0 HC=4
+WINDOW: 16 30 738 476 0 0 N  WF=0 WT=3 ",,,"
+BUFFER: BN="Assets\Scripts\Map\LevelInitializer.cs"
+VIEW: LN=.435 CL=28 LE=0 CX=28 CY=15 WI=121 BI=11 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 685 476 0 0 N  WF=0 WT=1 ",,,"
+BUFFER: BN="Assets\Scripts\Entities\Player.cs"
+VIEW: LN=.673 CL=1 LE=0 CX=1 CY=18 WI=119 BI=10 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 738 479 0 0 N  WF=0 WT=2 ",,,"
+BUFFER: BN="Assets\Scripts\Map\RoomGroup.cs"
+VIEW: LN=.105 CL=5 LE=0 CX=5 CY=5 WI=140 BI=15 HT=0 HN=0 HF=0 HC=4
+WINDOW: 64 120 738 602 0 0 N  WF=0 WT=5 ",,,"
+BUFFER: BN="Assets\Scripts\Map\Room.cs"
+VIEW: LN=.80 CL=1 LE=0 CX=1 CY=4 WI=125 BI=13 HT=0 HN=0 HF=0 HC=4
+WINDOW: 48 90 738 602 0 0 N  WF=0 WT=4 ",,,"
+BUFFER: BN="Assets\Scripts\Map\Tile.cs"
+VIEW: LN=.613 CL=39 LE=0 CX=39 CY=8 WI=123 BI=12 HT=0 HN=0 HF=0 HC=4
+WINDOW: 32 60 956 688 0 0 M  WF=0 WT=6 ",,,"
+BUFFER: BN="Assets\Scripts\Map\Map.cs"
+VIEW: LN=.10116 CL=57 LE=0 CX=62 CY=12 WI=127 BI=14 HT=0 HN=0 HF=0 HC=4
+FILEHIST: 6
+Assets\Scripts\Entities\Player.cs
+Assets\Scripts\Map\LevelInitializer.cs
+Assets\Scripts\Map\Tile.cs
+Assets\Scripts\Map\Room.cs
+Assets\Scripts\Map\RoomGroup.cs
+Assets\Scripts\Map\Map.cs
+TBCLASS: 0 0

@@ -1,0 +1,493 @@
+﻿1	Tōkyō	Tokyo	Japan	34,500,000	incl. Yokohama, Kawasaki, Saitama
+2	Guangzhou	Canton	China	25,800,000	Northern Pearl River Delta incl. Dongguan, Foshan, Jiangmen, Zhongshan
+3	Jakarta	Jakarta	Indonesia	25,300,000	incl. Bekasi, Bogor, Depok, Tangerang, Tangerang Selatan
+3	Seoul	Seoul	Korea (South)	25,300,000	incl. Bucheon, Goyang, Incheon, Seongnam, Suweon
+3	Shanghai	Shanghai	China	25,300,000	incl. Suzhou
+6	Ciudad de México	Mexico City	Mexico	23,200,000	incl. Nezahualcóyotl, Ecatepec, Naucalpan
+7	Delhi	Delhi	India	23,000,000	incl. Faridabad, Ghaziabad, Gurgaon
+8	New York	New York	U.S.A.	21,500,000	incl. Bridgeport, Newark, New Haven
+9	São Paulo	São Paulo	Brazil	21,100,000	incl. Guarulhos
+10	Mumbai	Bombay	India	20,800,000	incl. Bhiwandi, Kalyan, Thane, Ulhasnagar, Vasai-Virar
+11	Manila	Manila	Philippines	20,700,000	incl. Kalookan, Quezon City
+12	Karāchi	Karachi	Pakistan	17,400,000	
+13	Los Angeles	Los Angeles	U.S.A.	17,000,000	incl. Anaheim, Riverside
+14	Ōsaka	Osaka	Japan	16,800,000	incl. Kobe, Kyoto
+15	Beijing	Beijing	China	16,400,000	
+16	Moskva	Moscow	Russia	16,200,000	
+17	Al-Qāhirah	Cairo	Egypt	15,700,000	incl. Al-Jizah, Hulwan, Shubra al-Khaymah
+17	Kolkata	Calcutta	India	15,700,000	incl. Haora
+19	Buenos Aires	Buenos Aires	Argentina	14,300,000	incl. San Justo, La Plata
+20	Dhaka	Dacca	Bangladesh	14,000,000	
+21	Krung Thep	Bangkok	Thailand	13,800,000	
+22	Tehrān	Tehran	Iran	13,500,000	incl. Karaj
+23	İstanbul	Istanbul	Turkey	13,400,000	
+24	Lagos	Lagos	Nigeria	12,700,000	
+24	Rio de Janeiro	Rio de Janeiro	Brazil	12,700,000	incl. Nova Iguaçu, São Gonçalo
+26	London	London	Great Britain	12,600,000	
+27	Paris	Paris	France	10,600,000	
+28	Tianjin	Tientsin	China	9,850,000	
+29	Shenzhen	Shenzhen	China	9,800,000	
+30	Chicago	Chicago	U.S.A.	9,750,000	
+31	Kinshasa	Kinshasa	Congo (Dem. Rep.)	9,550,000	
+32	Lima	Lima	Peru	9,400,000	
+33	Chennai	Madras	India	9,250,000	
+34	Bengaluru	Bangalore	India	9,150,000	
+35	Lahore	Lahore	Pakistan	9,100,000	
+35	Wuhan	Wuhan	China	9,100,000	
+37	Bogotá	Bogotá	Colombia	8,950,000	
+38	Taibei	Taipei	Taiwan	8,850,000	incl. Taoyuan & most parts of Xinbei / New Taipei City
+39	Nagoya	Nagoya	Japan	8,400,000	
+40	Hyderābād	Hyderabad	India	8,250,000	
+41	Johannesburg	Johannesburg	South Africa	7,950,000	incl. Soweto, East Rand, West Rand
+42	Thành Phố Hồ Chí Minh	Saigon	Vietnam	7,800,000	incl. Biên Hòa
+43	Washington	Washington	U.S.A.	7,750,000	incl. Baltimore
+44	Philadelphia	Philadelphia	U.S.A.	7,250,000	incl. Allentown, Trenton
+45	Boston	Boston	U.S.A.	7,200,000	incl. Providence
+46	San Francisco	San Francisco	U.S.A.	7,150,000	incl. Concord, Oakland, San Jose, Santa Rosa
+46	Shenyang	Shenyang	China	7,150,000	incl. Fushun
+48	Hong Kong	Hong Kong	China	7,100,000	incl. Kowloon, Victoria
+49	Ahmadābād	Ahmedabad	India	6,750,000	
+50	Madrid	Madrid	Spain	6,650,000	
+51	Kuala Lumpur	Kuala Lumpur	Malaysia	6,500,000	incl.Klang
+51	Singapore	Singapore	Singapore	6,500,000	incl. Johor Bahru (Malaysia)
+53	Baghdād	Baghdad	Iraq	6,250,000	
+53	Chengdu	Chengtu	China	6,250,000	
+53	Chongqing	Chungking	China	6,250,000	
+56	Dallas	Dallas	U.S.A.	6,200,000	incl. Fort Worth
+57	Santiago	Santiago	Chile	6,100,000	
+58	Xi'an	Sian	China	6,000,000	incl. Xianyang
+59	Belo Horizonte	Belo Horizonte	Brazil	5,850,000	
+60	Ar-Riyād	Riyadh	Saudi Arabia	5,800,000	
+60	Luanda	Luanda	Angola	5,800,000	
+60	Toronto	Toronto	Canada	5,800,000	
+63	Houston	Houston	U.S.A.	5,750,000	
+63	Miami	Miami	U.S.A.	5,750,000	incl. Fort Lauderdale, West Palm Beach
+65	Bandung	Bandung	Indonesia	5,600,000	
+65	Detroit	Detroit	U.S.A.	5,600,000	incl. Toledo, Windsor (Canada)
+67	Nanjing	Nanking	China	5,400,000	
+67	Pune	Poona	India	5,400,000	incl. Pimpri-Chinchwad
+69	Atlanta	Atlanta	U.S.A.	5,300,000	
+70	Al-Kharṭūm	Khartoum	Sudan	5,100,000	
+71	Sankt-Peterburg	Saint Petersburg	Russia	5,050,000	
+72	Sūrat	Surat	India	4,975,000	
+72	Yangon	Rangoon	Myanmar	4,975,000	
+74	Chittagong	Chittagong	Bangladesh	4,825,000	
+74	Guadalajara	Guadalajara	Mexico	4,825,000	incl. Zapopan
+76	Al-Iskandarīyah	Alexandria	Egypt	4,775,000	
+77	Sydney	Sydney	Australia	4,725,000	
+78	Abidjan	Abidjan	Côte d'Ivoire	4,650,000	
+79	Milano	Milan	Italy	4,625,000	
+79	Ruhrgebiet	The Ruhr	Germany	4,625,000	
+79	Shantou	Shantou	China	4,625,000	
+82	Barcelona	Barcelona	Spain	4,575,000	
+82	Harbin	Harbin	China	4,575,000	
+82	Nairobi	Nairobi	Kenya	4,575,000	
+85	Caracas	Caracas	Venezuela	4,500,000	
+86	Monterrey	Monterrey	Mexico	4,475,000	
+87	Surabaya	Surabaya	Indonesia	4,425,000	
+88	Ankara	Ankara	Turkey	4,375,000	
+88	Berlin	Berlin	Germany	4,375,000	
+90	Hangzhou	Hangchou	China	4,350,000	
+91	Melbourne	Melbourne	Australia	4,225,000	
+92	Porto Alegre	Porto Alegre	Brazil	4,175,000	
+93	Napoli	Naples	Italy	4,150,000	
+93	Phoenix	Phoenix	U.S.A.	4,150,000	
+95	Casablanca	Casablanca	Morocco	4,100,000	
+96	Brasília	Brasília	Brazil	4,050,000	
+96	Cape Town	Cape Town	South Africa	4,050,000	
+98	Qingdao	Tsingtao	China	3,975,000	
+98	Recife	Recife	Brazil	3,975,000	
+100	Montréal	Montreal	Canada	3,950,000	
+101	Tampa	Tampa	U.S.A.	3,900,000	incl. Lakeland, St. Petersburg, Sarasota
+102	Seattle	Seattle	U.S.A.	3,875,000	
+103	Fortaleza	Fortaleza	Brazil	3,825,000	
+104	Accra	Accra	Ghana	3,800,000	
+104	Durban	Durban	South Africa	3,800,000	
+106	Al-Kuwayt	Kuwait City	Kuwait	3,775,000	
+107	Jiddah	Jidda	Saudi Arabia	3,750,000	
+107	Kano	Kano	Nigeria	3,750,000	
+109	Salvador	Salvador	Brazil	3,725,000	
+110	Medellín	Medellín	Colombia	3,675,000	
+110	Taiyuan	Taiyuan	China	3,675,000	
+112	Busan	Pusan	Korea (South)	3,650,000	
+113	Dalian	Dairen	China	3,625,000	
+114	Faisalabad	Faisalabad	Pakistan	3,575,000	
+115	Changchun	Changchun	China	3,525,000	
+115	Jinan	Jinan	China	3,525,000	
+117	Zhengzhou	Zhengzhou	China	3,500,000	
+118	Athínai	Athens	Greece	3,475,000	
+118	Dar es Salaam	Dar es Salaam	Tanzania	3,475,000	
+120	Rāwalpindi	Rawalpindi	Pakistan	3,450,000	incl. Islamabad
+120	Santo Domingo	Santo Domingo	Dominican Republic	3,450,000	
+122	Kānpur	Kanpur	India	3,425,000	
+123	Dimashq	Damascus	Syria	3,400,000	
+124	Curitiba	Curitiba	Brazil	3,375,000	
+125	El Djazaïr	Algiers	Algeria	3,350,000	
+126	Roma	Rome	Italy	3,325,000	
+127	Denver	Denver	U.S.A.	3,275,000	
+127	Jaipur	Jaipur	India	3,275,000	
+129	Kyïv	Kiev	Ukraine	3,250,000	
+129	Medan	Medan	Indonesia	3,250,000	
+131	Kunming	Kunming	China	3,225,000	
+131	Lucknow	Lucknow	India	3,225,000	
+133	Adis Abeba	Addis Abeba	Ethiopia	3,175,000	
+133	Kābol	Kabul	Afghanistan	3,175,000	
+135	'Ammān	Amman	Jordan	3,125,000	
+135	Fuzhou	Fuzhou	China	3,125,000	
+137	San Diego	San Diego	U.S.A.	3,100,000	
+138	Cleveland	Cleveland	U.S.A.	3,075,000	incl. Akron
+139	Harare	Harare	Zimbabwe	3,050,000	
+140	Campinas	Campinas	Brazil	3,025,000	
+141	Minneapolis	Minneapolis	U.S.A.	2,950,000	
+142	Changsha	Changsha	China	2,900,000	
+142	Puebla	Puebla	Mexico	2,900,000	
+144	İzmir	Izmir	Turkey	2,875,000	
+144	Orlando	Orlando	U.S.A.	2,875,000	
+146	Mashhad	Meshed	Iran	2,850,000	
+147	Cali	Cali	Colombia	2,825,000	
+147	Rotterdam	Rotterdam	Netherlands	2,825,000	incl. 's-Gravenhage (The Hague)
+149	Ciudad de Guatemala	Guatemala City	Guatemala	2,800,000	
+149	Dakar	Dakar	Senegal	2,800,000	
+149	Ḥalab	Aleppo	Syria	2,800,000	
+149	Ibadan	Ibadan	Nigeria	2,800,000	
+153	Gaoxiong	Kaohsiung	Taiwan	2,775,000	
+153	Nāgpur	Nagpur	India	2,775,000	
+155	P'yŏngyang	Pyongyang	Korea (North)	2,725,000	
+156	Cincinnati	Cincinnati	U.S.A.	2,700,000	incl. Dayton
+156	Wenzhou	Wenzhou	China	2,700,000	
+158	Birmingham	Birmingham	Great Britain	2,675,000	
+158	Colombo	Colombo	Sri Lanka	2,675,000	
+158	Hà Nội	Hanoi	Vietnam	2,675,000	
+158	Pretoria	Pretoria	South Africa	2,675,000	
+158	Shijiazhuang	Shijiazhuang	China	2,675,000	
+163	Daegu	Taegu	Korea (South)	2,625,000	
+163	Hamburg	Hamburg	Germany	2,625,000	
+163	Manchester	Manchester	Great Britain	2,625,000	
+166	Guayaquil	Guayaquil	Ecuador	2,600,000	
+166	Urumqi	Urumqi	China	2,600,000	
+168	Cebu	Cebu	Philippines	2,575,000	
+168	Port-au-Prince	Port-au-Prince	Haiti	2,575,000	
+170	Hefei	Hofei	China	2,550,000	
+170	Lisboa	Lisbon	Portugal	2,550,000	
+172	Budapest	Budapest	Hungary	2,525,000	
+172	Sapporo	Sapporo	Japan	2,525,000	
+172	Wuxi	Wuxi	China	2,525,000	
+172	Zibo	Zibo	China	2,525,000	
+176	Bamako	Bamako	Mali	2,500,000	
+176	Douala	Douala	Cameroon	2,500,000	
+176	Guiyang	Guiyang	China	2,500,000	
+179	Fukuoka	Fukuoka	Japan	2,475,000	
+180	Katowice	Katowice	Poland	2,450,000	Upper Silesian Area
+180	Toshkent	Tashkent	Uzbekistan	2,450,000	
+180	Xiamen	Xiamen	China	2,450,000	
+183	Lanzhou	Lanzhou	China	2,425,000	
+184	Tūnis	Tunis	Tunisia	2,400,000	
+184	Vancouver	Vancouver	Canada	2,400,000	
+184	Yaoundé	Yaoundé	Cameroon	2,400,000	
+187	St. Louis	St. Louis	U.S.A.	2,350,000	
+187	Tel Aviv-Yafo	Tel Aviv-Jaffa	Israel	2,350,000	
+189	Asunción	Asunción	Paraguay	2,325,000	
+189	Bakı	Baku	Azerbaijan	2,325,000	
+189	Indore	Indore	India	2,325,000	
+192	Bhilai	Bhilai	India	2,300,000	incl. Raipur
+192	Coimbatore	Coimbatore	India	2,300,000	
+192	Nanchang	Nanchang	China	2,300,000	
+192	Patna	Patna	India	2,300,000	
+192	Taizhong	Taichung	Taiwan	2,300,000	
+197	Leeds	Leeds	Great Britain	2,275,000	
+197	Ningbo	Ningbo	China	2,275,000	
+197	San Juan	San Juan	Puerto Rico	2,275,000	
+200	Warszawa	Warsaw	Poland	2,250,000	
+201	Anshan	Anshan	China	2,225,000	incl. Liaoyang
+201	La Habana	Havana	Cuba	2,225,000	
+203	Belém	Belém	Brazil	2,200,000	
+203	Charlotte	Charlotte	U.S.A.	2,200,000	
+203	Goiânia	Goiânia	Brazil	2,200,000	
+203	Gujrānwāla	Gujranwala	Pakistan	2,200,000	
+203	Portland	Portland	U.S.A.	2,200,000	
+203	Ṣan'ā'	Sana'a	Yemen	2,200,000	
+209	Antananarivo	Tananarive	Madagascar	2,175,000	
+209	Eṣfahān	Isfahan	Iran	2,175,000	
+209	Hyderābād	Hyderabad	Pakistan	2,175,000	
+209	Salt Lake City	Salt Lake City	U.S.A.	2,175,000	incl. Ogden, Provo
+213	Ad-Dammām	Dammam	Saudi Arabia	2,150,000	
+213	Kampala	Kampala	Uganda	2,150,000	
+215	Brisbane	Brisbane	Australia	2,125,000	
+216	Nanning	Nanning	China	2,100,000	
+216	Stockholm	Stockholm	Sweden	2,100,000	
+218	München	Munich	Germany	2,075,000	
+218	Quanzhou	Quanzhou	China	2,075,000	
+220	Pittsburgh	Pittsburgh	U.S.A.	2,050,000	
+220	Tangshan	Tangshan	China	2,050,000	
+222	Wien	Vienna	Austria	2,025,000	
+223	Bhopāl	Bhopal	India	2,000,000	
+223	La Paz	La Paz	Bolivia	2,000,000	
+223	Maputo	Maputo	Mozambique	2,000,000	
+226	Stuttgart	Stuttgart	Germany	1,990,000	
+226	Toluca	Toluca	Mexico	1,990,000	
+228	Maracaibo	Maracaibo	Venezuela	1,980,000	
+229	Huizhou	Huizhou	China	1,970,000	
+229	Multān	Multan	Pakistan	1,970,000	
+231	Amsterdam	Amsterdam	Netherlands	1,960,000	incl. Haarlem
+231	Lusaka	Lusaka	Zambia	1,960,000	
+231	Rabat	Rabat	Morocco	1,960,000	
+234	Bruxelles	Brussels	Belgium	1,950,000	
+234	Changzhou	Changzhou	China	1,950,000	
+234	Frankfurt	Frankfurt	Germany	1,950,000	
+234	Semarang	Semarang	Indonesia	1,950,000	
+238	Las Vegas	Las Vegas	U.S.A.	1,940,000	
+238	Sacramento	Sacramento	U.S.A.	1,940,000	
+240	Manaus	Manaus	Brazil	1,930,000	
+241	Barranquilla	Barranquilla	Colombia	1,910,000	
+241	Köln	Cologne	Germany	1,910,000	
+241	San Antonio	San Antonio	U.S.A.	1,910,000	
+241	Vadodara	Vadodara	India	1,910,000	
+245	București	Bucharest	Romania	1,880,000	
+245	Kansas City	Kansas City	U.S.A.	1,880,000	
+245	Minsk	Minsk	Belarus	1,880,000	
+245	Tijuana	Tijuana	Mexico	1,880,000	
+249	Āgra	Agra	India	1,860,000	
+249	Hiroshima	Hiroshima	Japan	1,860,000	
+249	Ouagadougou	Ouagadougou	Burkina Faso	1,860,000	
+249	Santa Cruz	Santa Cruz	Bolivia	1,860,000	
+253	Visākhapatnam	Vishakhapatnam	India	1,840,000	
+254	Baotou	Baotou	China	1,830,000	
+254	Jilin	Jilin	China	1,830,000	
+256	Bursa	Bursa	Turkey	1,820,000	
+256	Indianapolis	Indianapolis	U.S.A.	1,820,000	
+256	Port Harcourt	Port Harcourt	Nigeria	1,820,000	
+259	Valencia	Valencia	Venezuela	1,810,000	
+259	Vitória	Vitória	Brazil	1,810,000	
+261	San Salvador	San Salvador	El Salvador	1,800,000	
+262	Santos	Santos	Brazil	1,790,000	
+263	Perth	Perth	Australia	1,780,000	
+264	Montevideo	Montevideo	Uruguay	1,770,000	
+264	San José	San José	Costa Rica	1,770,000	
+266	Conakry	Conakry	Guinea	1,750,000	
+267	Kumasi	Kumasi	Ghana	1,730,000	
+267	León	León	Mexico	1,730,000	
+269	Peshāwar	Peshawar	Pakistan	1,720,000	
+269	Quito	Quito	Ecuador	1,720,000	
+271	Dubayy	Dubai	United Arab Emirates	1,710,000	
+271	Hartford	Hartford	U.S.A.	1,710,000	incl. Springfield, MA
+271	Nižnij Novgorod	Nizhny Novgorod	Russia	1,710,000	
+271	Valencia	Valencia	Spain	1,710,000	
+275	Ludhiāna	Ludhiana	India	1,700,000	
+275	Torino	Turin	Italy	1,700,000	
+277	Brazzaville	Brazzaville	Congo (Rep.)	1,690,000	
+277	Makkah	Mecca	Saudi Arabia	1,690,000	
+277	Meerut	Meerut	India	1,690,000	
+280	Lubumbashi	Lubumbashi	Congo (Dem. Rep.)	1,680,000	
+281	Nāshik	Nasik	India	1,670,000	
+282	Almaty	Alma-Ata	Kazakhstan	1,660,000	
+282	Kochi	Cochin	India	1,660,000	
+284	Mbuji-Mayi	Mbuji-Mayi	Congo (Dem. Rep.)	1,650,000	
+285	Makassar	Makassar	Indonesia	1,640,000	
+286	Ad-Dawḥah	Doha	Qatar	1,630,000	
+287	Adana	Adana	Turkey	1,620,000	
+287	Kaduna	Kaduna	Nigeria	1,620,000	
+289	Columbus	Columbus	U.S.A.	1,600,000	
+289	Phnum Pénh	Phnom Penh	Cambodia	1,600,000	
+289	Vijayawāda	Vijayawada	India	1,600,000	
+292	Charkiv	Kharkov	Ukraine	1,590,000	
+292	Palembang	Palembang	Indonesia	1,590,000	
+294	Austin	Austin	U.S.A.	1,580,000	
+294	Chandīgarh	Chandigarh	India	1,580,000	
+294	Ghazzah	Gaza	Palestinian Territories	1,580,000	
+294	Marseille	Marseille	France	1,580,000	
+294	Muqdisho	Mogadishu	Somalia	1,580,000	
+299	Kitakyūshū	Kitakyushu	Japan	1,570,000	
+299	Lyon	Lyon	France	1,570,000	
+299	Qiqihar	Qiqihar	China	1,570,000	
+299	Sendai	Sendai	Japan	1,570,000	
+299	Virginia Beach	Virginia Beach	U.S.A.	1,570,000	incl. Norfolk
+304	Huainan	Huainan	China	1,560,000	
+304	Tabrīz	Tabriz	Iran	1,560,000	
+306	Gwangju	Kwangju	Korea (South)	1,550,000	
+306	Weifang	Weifang	China	1,550,000	
+306	Xuzhou	Xuzhou	China	1,550,000	
+306	Yantai	Yantai	China	1,550,000	
+310	Lomé	Lomé	Togo	1,540,000	
+310	Madurai	Madurai	India	1,540,000	
+310	Novosibirsk	Novosibirsk	Russia	1,540,000	
+313	Daejeon	Taejon	Korea (South)	1,530,000	
+313	Milwaukee	Milwaukee	U.S.A.	1,530,000	
+315	Luoyang	Luoyang	China	1,520,000	
+316	Abuja	Abuja	Nigeria	1,510,000	
+316	Al-Mawṣil	Mosul	Iraq	1,510,000	
+316	Davao	Davao	Philippines	1,510,000	
+316	Jekaterinburg	Yekaterinburg	Russia	1,510,000	
+316	Khulna	Khulna	Bangladesh	1,510,000	
+316	Vārānasi	Benares	India	1,510,000	
+322	Kāṭhmānḍau	Kathmandu	Nepal	1,500,000	
+323	Córdoba	Córdoba	Argentina	1,490,000	
+323	Rājkot	Rajkot	India	1,490,000	
+325	Xiangfan	Xiangfan	China	1,480,000	
+325	Zhuhai	Zhuhai	China	1,480,000	
+327	Bhubaneswar	Bhubaneswar	India	1,470,000	incl. Cuttack
+327	Ciudad Juárez	Ciudad Juárez	Mexico	1,470,000	
+329	København	Copenhagen	Denmark	1,460,000	
+329	Liuzhou	Liuzhou	China	1,460,000	
+329	Yangzhou	Yangzhou	China	1,460,000	
+332	Donėc'k	Donetsk	Ukraine	1,440,000	
+332	Haikou	Haikou	China	1,440,000	
+332	Samara	Samara	Russia	1,440,000	
+335	Asansol	Asansol	India	1,430,000	
+335	George Town	George Town	Malaysia	1,430,000	
+335	Glasgow	Glasgow	Great Britain	1,430,000	
+335	Okayama	Okayama	Japan	1,430,000	
+339	Benin City	Benin City	Nigeria	1,420,000	
+339	Volgograd	Volgograd	Russia	1,420,000	
+341	Jamshedpur	Jamshedpur	India	1,410,000	
+341	Praha	Prague	Czech Republic	1,410,000	
+341	Raleigh	Raleigh	U.S.A.	1,410,000	
+341	Taizhou	Taizhou	China	1,410,000	
+345	Auckland	Auckland	New Zealand	1,390,000	
+345	Gaziantep	Gaziantep	Turkey	1,390,000	
+345	Linyi	Linyi	China	1,390,000	
+345	São Luís	São Luís	Brazil	1,390,000	
+349	Beograd	Belgrade	Serbia	1,370,000	
+349	Cixi	Cixi	China	1,370,000	
+351	Shīrāz	Shiraz	Iran	1,360,000	
+352	Daqing	Daqing	China	1,350,000	
+352	Dnipropėtrovs'k	Dnepropetrovsk	Ukraine	1,350,000	
+352	Liverpool	Liverpool	Great Britain	1,350,000	
+352	Malang	Malang	Indonesia	1,350,000	
+352	Niamey	Niamey	Niger	1,350,000	
+352	Sevilla	Sevilla	Spain	1,350,000	
+352	Srīnagar	Srinagar	India	1,350,000	
+359	Jabalpur	Jabalpur	India	1,340,000	
+360	Hohhot	Huhehot	China	1,330,000	
+360	Natal	Natal	Brazil	1,330,000	
+360	Sheffield	Sheffield	Great Britain	1,330,000	
+363	Buffalo	Buffalo	U.S.A.	1,320,000	incl. St. Catharines (Canada)
+364	Al-Manāmah	Manama	Bahrain	1,310,000	
+364	Bayrūt	Beirut	Lebanon	1,310,000	
+364	Sofija	Sofia	Bulgaria	1,310,000	
+367	Ciudad de Panamá	Panama City	Panama	1,300,000	
+367	Denpasar	Denpasar	Indonesia	1,300,000	
+369	Čel'abinsk	Chelyabinsk	Russia	1,290,000	
+369	Datong	Datong	China	1,290,000	
+369	Freetown	Freetown	Sierra Leone	1,290,000	
+369	Harrisburg	Harrisburg	U.S.A.	1,290,000	incl. Lancaster, York
+369	Nashville	Nashville	U.S.A.	1,290,000	
+369	Ottawa	Ottawa	Canada	1,290,000	
+369	Rosario	Rosario	Argentina	1,290,000	
+369	Torreón	Torreón	Mexico	1,290,000	
+377	Allahābād	Allahabad	India	1,280,000	
+377	Jacksonville	Jacksonville	U.S.A.	1,280,000	
+377	Tainan	Tainan	Taiwan	1,280,000	
+380	Aurangābād	Aurangabad	India	1,270,000	
+380	Calgary	Calgary	Canada	1,270,000	
+382	Dhanbād	Dhanbad	India	1,260,000	
+382	Mannheim	Mannheim	Germany	1,260,000	
+382	Maracay	Maracay	Venezuela	1,260,000	
+382	Ṭarābulus	Tripoli	Libya	1,260,000	
+382	Tbilisi	Tbilisi	Georgia	1,260,000	
+387	Amritsar	Amritsar	India	1,250,000	
+387	Rostov-na-Donu	Rostov-on-Don	Russia	1,250,000	
+389	Al-Baṣrah	Basra	Iraq	1,240,000	
+389	Ash-Shāriqah	Sharjah	United Arab Emirates	1,240,000	
+389	Lille	Lille	France	1,240,000	incl. Kortrijk (Belgium)
+389	Managua	Managua	Nicaragua	1,240,000	
+389	Yerevan	Yerevan	Armenia	1,240,000	
+394	Adelaide	Adelaide	Australia	1,230,000	
+394	Cartagena	Cartagena	Colombia	1,230,000	
+394	Maceió	Maceió	Brazil	1,230,000	
+397	Düsseldorf	Dusseldorf	Germany	1,220,000	
+397	McAllen	McAllen	U.S.A.	1,220,000	incl. Brownsville
+397	Yogyakarta	Yogyakarta	Indonesia	1,220,000	
+400	Barquisimeto	Barquisimeto	Venezuela	1,210,000	
+400	Cotonou	Cotonou	Benin	1,210,000	
+400	Edmonton	Edmonton	Canada	1,210,000	
+400	Jodhpur	Jodhpur	India	1,210,000	
+404	Al-Madīnah	Medina	Saudi Arabia	1,200,000	
+404	Monrovia	Monrovia	Liberia	1,200,000	
+404	Rānchi	Ranchi	India	1,200,000	
+404	Zürich	Zurich	Switzerland	1,200,000	
+408	Querétaro	Querétaro	Mexico	1,190,000	
+409	Joinville	Joinville	Brazil	1,180,000	
+409	Porto	Porto	Portugal	1,180,000	
+409	Stockton	Stockton	U.S.A.	1,180,000	incl. Modesto
+412	Gwalior	Gwalior	India	1,170,000	
+412	Mudanjiang	Mudanjiang	China	1,170,000	
+412	Oran	Oran	Algeria	1,170,000	
+412	Yiwu	Yiwu	China	1,170,000	
+416	Cochabamba	Cochabamba	Bolivia	1,160,000	
+416	Surakarta	Surakarta	Indonesia	1,160,000	
+418	Fès	Fes	Morocco	1,150,000	
+418	Kazan'	Kazan	Russia	1,150,000	
+418	Memphis	Memphis	U.S.A.	1,150,000	
+418	Naha	Naha	Japan	1,150,000	
+418	Omsk	Omsk	Russia	1,150,000	
+418	Ulaanbaatar	Ulan Bator	Mongolia	1,150,000	
+418	Ulsan	Ulsan	Korea (South)	1,150,000	
+425	Helsinki	Helsinki	Finland	1,140,000	
+425	Ndjamena	Ndjamena	Chad	1,140,000	
+427	Himeji	Himeji	Japan	1,130,000	
+427	João Pessoa	João Pessoa	Brazil	1,130,000	
+427	Valparaíso	Valparaíso	Chile	1,130,000	
+430	Ahvāz	Ahvaz	Iran	1,120,000	
+430	Newcastle upon Tyne	Newcastle upon Tyne	Great Britain	1,120,000	
+430	Zhanjiang	Zhanjiang	China	1,120,000	
+433	Baoding	Baoding	China	1,110,000	
+433	Dublin	Dublin	Ireland	1,110,000	
+433	Hamamatsu	Hamamatsu	Japan	1,110,000	
+433	Kumamoto	Kumamoto	Japan	1,110,000	
+433	San Luis Potosí	San Luis Potosí	Mexico	1,110,000	
+433	Thiruvananthapuram	Trivandrum	India	1,110,000	
+439	Bucaramanga	Bucaramanga	Colombia	1,100,000	
+439	Melbourne	Melbourne	U.S.A.	1,100,000	incl. Palm Bay, Port St. Lucie
+439	Qom	Qom	Iran	1,100,000	
+439	Tai'an	Tai'an	China	1,100,000	
+439	Xining	Xining	China	1,100,000	
+444	Bulawayo	Bulawayo	Zimbabwe	1,090,000	
+444	Changwon	Changwon	Korea (South)	1,090,000	
+444	Maiduguri	Maiduguri	Nigeria	1,090,000	
+444	Mandalay	Mandalay	Myanmar	1,090,000	
+444	Port Elizabeth	Port Elizabeth	South Africa	1,090,000	
+449	Florianópolis	Florianópolis	Brazil	1,080,000	
+449	Konya	Konya	Turkey	1,080,000	
+449	Saratov	Saratov	Russia	1,080,000	
+452	Kota	Kota	India	1,070,000	
+452	Odėsa	Odessa	Ukraine	1,070,000	
+452	Tiruchirāppalli	Tiruchirappalli	India	1,070,000	
+452	Ufa	Ufa	Russia	1,070,000	
+456	Nürnberg	Nuremberg	Germany	1,060,000	
+456	Tegucigalpa	Tegucigalpa	Honduras	1,060,000	
+456	Zaozhuang	Zaozhuang	China	1,060,000	
+459	Arbīl	Erbil	Iraq	1,050,000	
+459	Aşgabat	Ashgabat	Turkmenistan	1,050,000	
+459	Greensboro	Greensboro	U.S.A.	1,050,000	
+459	Quetta	Quetta	Pakistan	1,050,000	
+459	Shaoxing	Shaoxing	China	1,050,000	
+464	Bareilly	Bareilly	India	1,040,000	
+464	Kozhikode	Calicut	India	1,040,000	
+464	Mysore	Mysore	India	1,040,000	
+464	Perm'	Perm	Russia	1,040,000	
+464	Tiruppūr	Tiruppūr	India	1,040,000	
+464	Yueyang	Yueyang	China	1,040,000	
+470	Guilin	Guilin	China	1,030,000	
+470	Jining	Jining	China	1,030,000	
+470	Mérida	Mérida	Mexico	1,030,000	
+470	Oklahoma City	Oklahoma City	U.S.A.	1,030,000	
+470	Pekanbaru	Pekanbaru	Indonesia	1,030,000	
+470	Zhuzhou	Zhuzhou	China	1,030,000	
+476	Antalya	Antalya	Turkey	1,020,000	
+476	Guwāhāti	Gauhati	India	1,020,000	
+476	Jixi	Jixi	China	1,020,000	
+476	Pingdingshan	Pingdingshan	China	1,020,000	
+480	Bandar Lampung	Bandar Lampung	Indonesia	1,010,000	
+480	Batam	Batam	Indonesia	1,010,000	
+480	Krasnojarsk	Krasnoyarsk	Russia	1,010,000	
+480	Marrakech	Marrakech	Morocco	1,010,000	
+480	Mombasa	Mombasa	Kenya	1,010,000	
+480	Nouakchott	Nouakchott	Mauritania	1,010,000	
+486	Aguascalientes	Aguascalientes	Mexico	1,000,000	
+486	El Paso	El Paso	U.S.A.	1,000,000	incl. Las Cruces
+486	Kirkūk	Kirkuk	Iraq	1,000,000	
+486	Louisville	Louisville	U.S.A.	1,000,000	
+486	Mexicali	Mexicali	Mexico	1,000,000	
+486	Richmond	Richmond	U.S.A.	1,000,000	
+486	Solāpur	Sholapur	India	1,000,000	
+486	Yichang	Yichang	China	1,000,000	

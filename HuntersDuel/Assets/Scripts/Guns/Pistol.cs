@@ -15,6 +15,7 @@ public class Pistol : Gun {
 	public GameObject bulletPrefab;
 	public float bulletSpeed;
 	public AudioClip gunsfx;
+    public AudioClip loadBulletSfx;
 	public float walkSpeed;
 	
 	BulletState[] chambers = new BulletState[6];
@@ -57,6 +58,7 @@ public class Pistol : Gun {
 				int chamberIndex = (currentChamber + i)%chambers.Length;
 				if(chambers[chamberIndex] == BulletState.Empty){
 					chambers[chamberIndex] = BulletState.Live;
+                    AudioManager.PlaySFX(loadBulletSfx);
 					//ammoReserve--;
 					break;
 				}

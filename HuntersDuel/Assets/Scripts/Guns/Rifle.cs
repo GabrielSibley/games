@@ -15,6 +15,7 @@ public class Rifle : Gun {
 	public float m_bulletSpeed;
 	
 	public AudioClip m_gunsfx;
+    public AudioClip loadBulletSfx;
 	public float walkSpeed;
 	
 	//public int m_ammoReserve = 5;
@@ -78,8 +79,8 @@ public class Rifle : Gun {
 		m_boltState = BoltState.Closed;
 		m_magazine = new BulletState[5];
 		m_partialReload = false;
-		for(int i = 0; i < 5; i++){
-			AddLiveRound();
+		for(int i = 0; i < m_magazine.Length; i++){
+            m_magazine[i] = BulletState.Live;
 		}
 		Update();
 	}
@@ -91,6 +92,7 @@ public class Rifle : Gun {
 	}
 	
 	void AddLiveRound(){
+        AudioManager.PlaySFX(loadBulletSfx);
 		for(int i = m_magazine.Length-1; i > 0; i--){
 			m_magazine[i] = m_magazine[i-1];
 		}

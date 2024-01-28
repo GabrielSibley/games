@@ -28,10 +28,10 @@ public abstract class Gun : MonoBehaviour {
 	public virtual void SpawnBullet(GameObject bulletPrefab, float bulletSpeed, BasicMove player, float angle){
 		Quaternion dir = Quaternion.Euler(0, 0, angle);
 		GameObject bullet = Instantiate(bulletPrefab, player.transform.position + dir * new Vector3(Bullet.bulletSpawnDistance, 0, 0), Quaternion.identity) as GameObject;
-		bullet.rigidbody.velocity = dir * new Vector3(bulletSpeed, 0, 0);
+		bullet.GetComponent<Rigidbody>().velocity = dir * new Vector3(bulletSpeed, 0, 0);
 		bullet.GetComponent<Bullet>().damage = Damage;
 		bullet.GetComponent<Bullet>().owner = player.m_player;
-		Physics.IgnoreCollision(bullet.collider, player.collider);
+		Physics.IgnoreCollision(bullet.GetComponent<Collider>(), player.GetComponent<Collider>());
 	}
 
 }

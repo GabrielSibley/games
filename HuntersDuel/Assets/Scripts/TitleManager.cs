@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class TitleManager : MonoBehaviour {
@@ -12,7 +13,7 @@ public class TitleManager : MonoBehaviour {
 		if(players[0].IsReady && players[1].IsReady){
 			PlayerGuns[0] = players[0].tutorial.ActiveGun.GunType;
 			PlayerGuns[1] = players[1].tutorial.ActiveGun.GunType;
-			Application.LoadLevel ("game");
+			SceneManager.LoadScene("game");
 		}
 	}
 }

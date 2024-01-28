@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [PrefabManager]
 public class PipeDisplay : MonoBehaviour {
@@ -16,6 +17,8 @@ public class PipeDisplay : MonoBehaviour {
     public IPipeDisplayAnchor FromOverride;
     public IPipeDisplayAnchor ToOverride;
 
+    private List<Vector3> pathPoints = new List<Vector3>();
+
 	public void Display()
 	{
         Vector2 fromWorld = From.WorldPos;
@@ -31,11 +34,11 @@ public class PipeDisplay : MonoBehaviour {
 
 		if(Pipe.Paused)
 		{
-			GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.5f);
+			GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
 		}
 		else
 		{
-			GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
+			GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.3f);
 		}
 
         if (Pipe.GrabberCount > 0)

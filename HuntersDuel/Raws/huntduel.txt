@@ -1,0 +1,65 @@
+Milestones
+Move
+Aim
+Fire
+Cycle & Reload
+Health, Damage, Dying & Respawning
+Scoring
+Game Over
+Title / Menu
+Terrain
+Animals
+Powerups
+
+
+Graham Vs Tom in:
+HUNTERS DUEL
+
+First to 11 points wins
+SCORING
+Tiger ....... 4 Pts
+Opponent .... 3 Pts
+Deer ........ 2 Pts
+Fowl ........ 1 Pt
+
+-Getting killed by Tiger will give opponent 3 Pts
+-Winning point must come from opponent's death
+
+Basic Controls:
+Stick: Movement
+A1: Aim
+A1 + A2: Fire
+A2 A2 (A2 ...): Melee
+
+Weapons:
+Hunting Rifle
+A2 + Move: Cycle bolt (Up, Left, Right, Down)
+A2 + Up, Down: Reload (While bolt is open)
+-Excellent accuracy
+-Single shot
+-Massive Damage
+-5 rounds loaded at once, start with 15 bullets total.
+
+Revolver
+A2 + Move: Open/Close cylinder (Down / Up), Eject Casings (Left, while cylinder is open)
+A2 + Right: Load bullet (While cylinder is open)
+-Modest accuracy
+-Semi-auto
+-Modest Damage
+-6 rounds loaded at once, start with 30 bullets total.
+-Unfired rounds are lost when cylinder is emptied.
+
+Shotgun
+A2 + Move: Pump (Left / Right)
+A2 + Up, Down: Load shell
+-Spread-fire.
+-Pump-action.
+-Massive damage at close range.
+-Must chamber round before firing if reloaded from empty.
+-4+1 shells loaded at once, start with 9 shells total.
+
+Pickups:
+Health
+Ammo
+Weapon Swap
+Minigun?
